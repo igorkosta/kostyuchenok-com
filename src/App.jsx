@@ -21,15 +21,15 @@ export default function PersonalSite() {
       href: "https://www.youtube.com/watch?v=Ae4jC65yc78"
     },
     {
-      title: "Эволюция Необанков",
-      description: "О будущем Финтеха и Эволюции Необанков. Доклад на конференции, Rocket Conf 2024 в Алматы, Казахстан",
+      title: "Evolution of Neobanks",
+      description: "On the evolution and the future of neobanks and neobanking. Keynote at the Rocket Conf 2024 in Almaty, Kazakhstan",
       language: "Russian",
       videoId: "iXaRbtYwcUI", // another example ID
       href: "https://www.youtube.com/watch?v=iXaRbtYwcUI"
     },
     {
-      title: "Как финтех меняет будущее",
-      description: "Панельная дискуссия на конференции, Rocket Conf 2024 в Алматы, Казахстан",
+      title: "How FinTech changes the Future",
+      description: "Panel discussion on the future of FinTech, Payments and Banking. Rocket Conf 2024 in Almaty, Kazakhstan",
       language: "Russian",
       videoId: "C8_3QDyIr6o", // another example ID
       href: "https://www.youtube.com/watch?v=C8_3QDyIr6o"
@@ -41,7 +41,7 @@ export default function PersonalSite() {
   ];
 
   const socialLinks = [
-    { name: "LinkedIn", href: "#" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/igorkostyuchenok/" },
     { name: "Telegram", href: "https://t.me/kostyuchenok" },
     { name: "WhatsApp", href: "https://wa.me/4917661508419" },
     { name: "Email", href: "#" }
@@ -56,7 +56,7 @@ export default function PersonalSite() {
           </a>
           <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
             <a href="#talks">/ Talks</a>
-            <a href="#research">/ Research</a>
+            {/* <a href="#research">/ Research</a> */}
             <a href="#contact-me">/ Contact Me</a>
           </nav>
 
@@ -94,13 +94,11 @@ export default function PersonalSite() {
                   <span className="language-pill">{p.language}</span>
                 </div>
                 <p>{p.description}</p>
-                <a href={p.href} width="50%" target="_blank">Watch on YouTube</a>
               </div>
               <div className="video">
                 <iframe
                   src={`https://www.youtube.com/embed/${p.videoId}`}
                   title={p.title}
-                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
@@ -110,6 +108,7 @@ export default function PersonalSite() {
         ))}
       </section>
 
+      {/* Writing / Contact sections
       <section id="research">
         <h2>Writing</h2>
         <div className="list">
@@ -121,18 +120,13 @@ export default function PersonalSite() {
           ))}
         </div>
       </section>
+      */}
 
       <section id="contact-me">
-        <h2>Contact Me</h2>
-        <p>
-          Reach out at <a href="mailto:you@example.com">you@example.com</a> or
-          use the form below.
-        </p>
-        <form action="mailto:you@example.com" method="GET">
-          <input type="text" name="subject" placeholder="Subject" />
-          <textarea name="body" rows={4} placeholder="Your message..."></textarea>
-          <button type="submit">Send</button>
-        </form>
+        <h1 className="hero-text">Contact Me</h1>
+        <h1 className="hero-text mail">
+          <a href="mailto:igor@kostyuchenok.com">igor@kostyuchenok.com</a>
+        </h1>
       </section>
 
       <footer>
