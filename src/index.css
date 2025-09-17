@@ -282,6 +282,76 @@ p {
   }
 }
 
+
+/* About me section */
+.about-me-section {
+  width: 90%;
+  margin: 5rem auto; /* centered with spacing above/below */
+}
+
+.about-me-container {
+  display: flex;
+  gap: 2rem;
+  height: auto;
+}
+
+/* Left column: image */
+.about-me-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1; /* 50% width */
+}
+
+.about-me-image img {
+  width: 70%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Right column: bio */
+.about-me-bio {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+}
+
+.about-me-bio h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-me-bio p {
+  margin-bottom: 1rem;
+  color: #333;
+  line-height: 1.6;
+  font-size: 1.5rem;
+}
+
+/* Responsive: stack vertically on mobile */
+@media (max-width: 768px) {
+  .about-me-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-me-image,
+  .about-me-bio {
+    flex: unset;
+    width: 100%;
+  }
+
+  .about-me-image img {
+    height: auto;
+  }
+}
+
+/* About me section */
+
 /* Writing / Contact sections */
 .list {
   display: flex;
