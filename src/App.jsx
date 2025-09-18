@@ -46,7 +46,7 @@ export default function PersonalSite() {
     { name: "LinkedIn", href: "https://www.linkedin.com/in/igorkostyuchenok/" },
     { name: "Telegram", href: "https://t.me/kostyuchenok" },
     { name: "WhatsApp", href: "https://wa.me/4917661508419" },
-    { name: "Email", href: "#" }
+    { name: "Email", href: "mailto:igor@kostyuchenok.com" }
   ];
 
   return (
