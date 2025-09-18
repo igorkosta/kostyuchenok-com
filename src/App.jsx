@@ -59,6 +59,7 @@ export default function PersonalSite() {
           <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
             <a href="#talks">/ Talks</a>
             {/* <a href="#research">/ Research</a> */}
+            <a href="#about-me">/ About Me</a>
             <a href="#contact-me">/ Contact Me</a>
           </nav>
 
