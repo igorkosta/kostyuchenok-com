@@ -60,7 +60,7 @@ export default function PersonalSite() {
             <a href="#talks">/ Talks</a>
             {/* <a href="#research">/ Research</a> */}
             <a href="#about-me">/ About Me</a>
-            <a href="#contact-me">/ Contact Me</a>
+            <a href="#contact-me">/ Contact</a>
           </nav>
 
           {/* Hamburger Button */}
@@ -71,7 +71,7 @@ export default function PersonalSite() {
       </header>
 
       <div className="bio">
-        <h1 className="hero-text">FinTech Entrepreneur, Speaker, and Investor</h1>
+        <h1 className="hero-text">FinTech Entrepreneur, Speaker, and Author</h1>
       </div>
 
       <section id="showcase">
