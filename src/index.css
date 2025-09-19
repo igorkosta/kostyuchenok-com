@@ -306,7 +306,6 @@ p {
 
 .about-me-image img {
   width: 70%;
-  height: 70%;
   object-fit: cover;
   border-radius: 12px;
 }
