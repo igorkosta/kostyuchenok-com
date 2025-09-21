@@ -17,28 +17,28 @@ export default function PersonalSite() {
       description: "Panel Discussion at the UNCHAIN FinTech Festival in Oradea, Romania in 2025",
       language: "English",
       videoId: "vBu4ByJGNU4", // another example ID
-      href: "https://www.youtube.com/watch?v=vBu4ByJGNU4"
+      href: "//www.youtube.com/embed/vBu4ByJGNU4"
     },
     {
       title: "● CLOUD MIGRATION",
       description: "Moderating the Cloud Migraion panel at theUNCHAIN FinTech Festival in Oradea, Romania in 2025",
       language: "English",
       videoId: "Ae4jC65yc78", // another example ID
-      href: "https://www.youtube.com/watch?v=Ae4jC65yc78"
+      href: "//www.youtube.com/embed/Ae4jC65yc78"
     },
     {
       title: "● Evolution of Neobanks",
       description: "On the evolution and the future of neobanks and neobanking. Keynote at the Rocket Conf 2024 in Almaty, Kazakhstan",
       language: "Russian",
       videoId: "iXaRbtYwcUI", // another example ID
-      href: "https://www.youtube.com/watch?v=iXaRbtYwcUI"
+      href: "//www.youtube.com/embed/iXaRbtYwcUI"
     },
     {
       title: "● How FinTech changes the Future",
       description: "Panel discussion on the future of FinTech, Payments and Banking. Rocket Conf 2024 in Almaty, Kazakhstan",
       language: "Russian",
       videoId: "C8_3QDyIr6o", // another example ID
-      href: "https://www.youtube.com/watch?v=C8_3QDyIr6o"
+      href: "//www.youtube.com/embed/C8_3QDyIr6o"
     }
   ];
 
