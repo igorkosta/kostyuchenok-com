@@ -42,6 +42,23 @@ export default function PersonalSite() {
     }
   ];
 
+  const books = [
+    {
+      title: "Startup, Please",
+      description: "Startup, Please: What you need to know before founding your own company",
+      language: "English",
+      cover: "../img/startup-please.jpg",
+      link: "https://bookgoodies.com/a/B0BWFK212S"
+    },
+    {
+      title: "FinTech 101",
+      description: "FinTech 101 is a very short introduction into the world of FinTech, from the first Banks of Mesopotamia to Blockchain and Bitcoin.",
+      language: "English",
+      cover: "../img/fintech-101.jpg",
+      link: "https://bookgoodies.com/a/B0F8DNP1HG"
+    }
+  ];
+
   const socialLinks = [
     { name: "LinkedIn", href: "https://www.linkedin.com/in/igorkostyuchenok/" },
     { name: "Telegram", href: "https://t.me/kostyuchenok" },
@@ -58,7 +75,7 @@ export default function PersonalSite() {
           </a>
           <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
             <a href="#talks">/ Talks</a>
-            {/* <a href="#research">/ Research</a> */}
+            <a href="#books">/ Books</a>
             <a href="#about-me">/ About Me</a>
             <a href="#contact-me">/ Contact</a>
           </nav>
@@ -111,10 +128,34 @@ export default function PersonalSite() {
         ))}
       </section>
 
+      <section id="books">
+        <h2>Books</h2>
+        {books.map((b) => (
+          <div key={b.title} className="book-section">
+            <div className="talk">
+              <div className="description">
+                <div>
+                  <span className="title">{b.title}</span>
+                  <span className="language-pill">{b.language}</span>
+                </div>
+                <p>{b.description}</p>
+                <a href={b.link} target="_blank" rel="noopener noreferrer">
+                  Buy on Amazon
+                </a>
+              </div>
+              <div className="cover">
+                <a href={b.link} target="_blank" rel="noopener noreferrer">
+                  <img src={b.cover} alt={b.title} />
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
       <section id="about-me">
         <div className="about-me-container">
           <div className="about-me-image">
-            <img src={profilePic} alt="Your Name" />
+            <img src={profilePic} alt="Igor" />
           </div>
           <div className="about-me-bio">
             <p>Serial entrepreneur, speaker, and C-Level mentor.</p>
@@ -139,4 +180,3 @@ export default function PersonalSite() {
     </div>
   );
 }
-
