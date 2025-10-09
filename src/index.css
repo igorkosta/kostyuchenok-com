@@ -66,6 +66,7 @@ header nav a:hover {
   background: none;
   border: none;
   cursor: pointer;
+  color: #111;
 }
 
 /* Mobile styles */
