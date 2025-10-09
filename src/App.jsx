@@ -45,7 +45,7 @@ export default function PersonalSite() {
   const books = [
     {
       title: "Startup, Please",
-      description: "Startup, Please: What you need to know before founding your own company",
+      description: "Startup, Please: What you need to know before starting your own company",
       language: "English",
       cover: "../img/startup-please.jpg",
       link: "https://bookgoodies.com/a/B0BWFK212S"
