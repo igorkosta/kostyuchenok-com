@@ -249,6 +249,40 @@ p {
   transition: all 0.3s ease;
 }
 
+@keyframes darkPulse {
+  0% {
+    background-color: #8b0000; /* dark red */
+  }
+  20% {
+    background-color: #003a8c; /* dark blue */
+  }
+  40% {
+    background-color: #8c6f00; /* dark yellow (mustard) */
+  }
+  60% {
+    background-color: #5a3a1e; /* dark brown */
+  }
+  80% {
+    background-color: #0f6622; /* dark green */
+  }
+  100% {
+    background-color: #8b0000; /* back to dark red */
+  }
+}
+
+.connect-button {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: blue;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 99px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin: 0 0.5rem;
+  animation: darkPulse 6s ease-in-out infinite;
+}
+
 .talk .description a:hover {
   background: #878953;
   transform: scale(1.05);
