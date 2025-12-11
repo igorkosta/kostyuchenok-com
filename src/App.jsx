@@ -90,7 +90,7 @@ export default function PersonalSite() {
       <div className="bio">
         <h1 className="hero-text">
           FinTech Entrepreneur, Speaker, and Author
-          <a href="https://buzz.kostyuchenok.com/meet" target="_blank" rel="noopener noreferrer" className="connect-button">
+          <a href="https://buzzme.now" target="_blank" rel="noopener noreferrer" className="connect-button">
             Buzz Me
           </a>
         </h1>
