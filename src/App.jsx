@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import profilePic from "./assets/me.jpg";
+import { scrollToSection } from "./utils/scrollToSection";
 
 export default function PersonalSite() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -61,9 +62,9 @@ export default function PersonalSite() {
 
   const socialLinks = [
     { name: "LinkedIn", href: "https://www.linkedin.com/in/igorkostyuchenok/" },
+    { name: "Finextra", href: "https://www.finextra.com/bloggers/165855" },
     { name: "Telegram", href: "https://t.me/kostyuchenok" },
     { name: "WhatsApp", href: "https://wa.me/4917661508419" },
-    { name: "Email", href: "mailto:igor@kostyuchenok.com" }
   ];
 
   return (
@@ -74,10 +75,10 @@ export default function PersonalSite() {
             <div className="logo">Igor Kostyuchenok</div>
           </a>
           <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-            <a href="#talks">/ Talks</a>
-            <a href="#books">/ Books</a>
-            <a href="#about-me">/ About Me</a>
-            <a href="#contact-me">/ Contact</a>
+            <a onClick={() => {scrollToSection("talks")}}>/ Talks</a>
+            <a onClick={() => {scrollToSection("books")}}>/ Books</a>
+            <a onClick={() => {scrollToSection("about-me")}}>/ About Me</a>
+            <a onClick={() => {scrollToSection("contact-me")}}>/ Contact</a>
           </nav>
 
           {/* Hamburger Button */}
@@ -179,7 +180,7 @@ export default function PersonalSite() {
 
       <footer>
         {socialLinks.map((s, i) => (
-          <a key={i} href={s.href}>{s.name}</a>
+          <a key={i} href={s.href} target="_blank" rel="noopener noreferrer">{s.name}</a>
         ))}
       </footer>
     </div>
