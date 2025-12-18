@@ -63,7 +63,7 @@ export default function PersonalSite() {
   const socialLinks = [
     { name: "LinkedIn", href: "https://www.linkedin.com/in/igorkostyuchenok/" },
     { name: "Finextra", href: "https://www.finextra.com/bloggers/165855" },
-    { name: "Telegram", href: "https://t.me/kostyuchenok" },
+    { name: "Newsletter", href: "https://newsletter.kostyuchenok.com" },
     { name: "WhatsApp", href: "https://wa.me/4917661508419" },
   ];
 
@@ -78,7 +78,7 @@ export default function PersonalSite() {
             <a onClick={() => {scrollToSection("talks")}}>/ Talks</a>
             <a onClick={() => {scrollToSection("books")}}>/ Books</a>
             <a onClick={() => {scrollToSection("about-me")}}>/ About Me</a>
-            <a onClick={() => {scrollToSection("contact-me")}}>/ Contact</a>
+            <a href="https://newsletter.kostyuchenok.com" target="_blank">/ Newsletter</a>
           </nav>
 
           {/* Hamburger Button */}
