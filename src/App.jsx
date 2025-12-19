@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import profilePic from "./assets/me.jpg";
+import profilePic from "./assets/vertical-me.png";
 import { scrollToSection } from "./utils/scrollToSection";
 
 export default function PersonalSite() {
@@ -88,13 +88,14 @@ export default function PersonalSite() {
         </div>
       </header>
 
-      <div className="bio">
-        <h1 className="hero-text">
+      <div className="hero">
+        <h1>
           FinTech Entrepreneur, Speaker, and Author
           <a href="https://buzzme.now" target="_blank" rel="noopener noreferrer" className="connect-button">
             Buzz Me
           </a>
         </h1>
+        <img src="/img/turtleneck-me.png" />
       </div>
 
       <section id="showcase">
@@ -172,8 +173,8 @@ export default function PersonalSite() {
       </section>
 
       <section id="contact-me">
-        <h1 className="hero-text">Contact Me</h1>
-        <h1 className="hero-text mail">
+        <h1 className="large-text">Contact Me</h1>
+        <h1 className="large-text mail">
           <a href="mailto:igor@kostyuchenok.com">igor@kostyuchenok.com</a>
         </h1>
       </section>

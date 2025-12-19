@@ -121,23 +121,43 @@ a:hover {
   text-decoration-color: currentColor;
 }
 
-.hero-text {
-  color: var(--black);
-  margin-top: 20px;
-  margin-bottom: 20px;
+/* Bio */
+.hero {
+  display: flex;
+  width: 100%;
+}
+
+.hero h1,
+.hero img {
+  width: 50%;
+}
+.hero h1 {
+  margin-top: 10%;
+  margin-bottom: 10%;
   font-size: 6vw;
   font-weight: 500;
   line-height: 6vw;
 }
 
-/* Bio */
-.bio {
-  align-items: center;
-  width: 90%;
-  height: auto;
-  margin: 2rem auto;
-  padding: 6vw 0;
-  display: block;
+.hero img {
+  object-fit: cover;
+}
+
+.large-text {
+  font-size: 6vw;
+  font-weight: 500;
+  line-height: 6vw;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero h1,
+  .hero img {
+    width: 100%;
+  }
 }
 
 #showcase {
