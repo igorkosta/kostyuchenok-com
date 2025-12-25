@@ -539,3 +539,31 @@ footer a:hover {
   }
 }
 
+.snow-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image:
+    radial-gradient(6px 6px at 10% 10%, rgba(59,130,246,0.85) 40%, transparent 41%), /* blue */
+    radial-gradient(5px 5px at 30% 30%, rgba(239,68,68,0.85) 40%, transparent 41%), /* red */
+    radial-gradient(6px 6px at 50% 50%, rgba(16,185,129,0.85) 40%, transparent 41%), /* green */
+    radial-gradient(5px 5px at 70% 20%, rgba(168,85,247,0.85) 40%, transparent 41%), /* purple */
+    radial-gradient(6px 6px at 90% 40%, rgba(245,158,11,0.85) 40%, transparent 41%); /* amber */
+
+  background-size: 260px 260px;
+  animation: snow-fall 18s linear infinite;
+
+  filter: drop-shadow(0 0 1.5px rgba(0,0,0,0.3));
+  opacity: 0.75;
+}
+
+@keyframes snow-fall {
+  from {
+    background-position: 0 -260px;
+  }
+  to {
+    background-position: 50px 260px;
+  }
+}

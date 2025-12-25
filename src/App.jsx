@@ -69,6 +69,7 @@ export default function PersonalSite() {
 
   return (
     <div>
+      <div className="snow-container" />
       <header>
         <div className="nav-container">
           <a href="/">
