@@ -69,7 +69,6 @@ export default function PersonalSite() {
 
   return (
     <div>
-      <div className="snow-container" />
       <header>
         <div className="nav-container">
           <a href="/">
@@ -96,7 +95,6 @@ export default function PersonalSite() {
             Buzz Me
           </a>
         </h1>
-        <img src="/img/turtleneck-me.png" />
       </div>
 
       <section id="showcase">
