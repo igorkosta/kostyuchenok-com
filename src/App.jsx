@@ -64,7 +64,7 @@ export default function PersonalSite() {
     { name: "LinkedIn", href: "https://www.linkedin.com/in/igorkostyuchenok/" },
     { name: "Finextra", href: "https://www.finextra.com/bloggers/165855" },
     { name: "Newsletter", href: "https://newsletter.kostyuchenok.com" },
-    { name: "WhatsApp", href: "https://wa.me/4917661508419" },
+    { name: "Telegram", href: "https://t.me/kostyuchenok" },
   ];
 
   return (
@@ -90,7 +90,7 @@ export default function PersonalSite() {
 
       <div className="hero">
         <h1>
-          FinTech Entrepreneur, Speaker, and Author
+          Driving Digital Transformation & Resilient Infrastructure in Regulated Environments.
           <a href="https://buzzme.now" target="_blank" rel="noopener noreferrer" className="connect-button">
             Buzz Me
           </a>
