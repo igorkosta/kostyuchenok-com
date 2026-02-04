@@ -11,7 +11,9 @@ export default function BlogPost() {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
-      <p className="text-gray-500 mb-6">{post.date.toString()}</p>
+      <p className="text-gray-500 mb-6">
+        {post.date.toISOString().slice(0, 10)}
+      </p>
 
       <article className="prose max-w-none">
         <ReactMarkdown>{post.content}</ReactMarkdown>

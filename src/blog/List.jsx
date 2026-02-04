@@ -31,7 +31,7 @@ export default function BlogList() {
                 {post.title}
               </div>
               <div className="text-sm text-gray-500 mt-1">
-                {post.date.toString()}
+                {post.date.toISOString().slice(0, 10)}
               </div>
             </Link>
           ))}
