@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { posts } from "./index";
 
 export default function BlogPost() {
@@ -16,7 +17,9 @@ export default function BlogPost() {
       </p>
 
       <article className="prose max-w-none">
-        <ReactMarkdown>{post.content}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {post.content}
+        </ReactMarkdown>
       </article>
     </div>
   );
