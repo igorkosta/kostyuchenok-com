@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
 import { posts } from "./index";
+import heroImage from "../assets/blog-hero.jpg";
 
 export default function BlogList() {
   return (
     <div className="min-h-screen flex justify-center px-4">
       {/* Centered column taking 80% of screen */}
       <div className="w-[80%] max-w-4xl py-12">
+        <div className="w-full mb-10">
+          <img
+            src={heroImage}
+            alt="Blog"
+            className="w-full h-48 md:h-64 object-cover rounded-2xl"
+          />
+        </div>
+
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
           Blog
         </h1>
