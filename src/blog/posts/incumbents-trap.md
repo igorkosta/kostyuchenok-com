@@ -1,6 +1,6 @@
 ---
 title: Incumbents’ Trap
-date: 2026-01-01
+date: 2026-01-02
 description: Incumbents’ Trap
 ---
 
@@ -17,7 +17,7 @@ While neobanks have reached a *tipping point* in total users, the **Big Six incu
 
 Most UK adults now practice **dual banking**: they keep a traditional bank for perceived security and mortgages, but use a neobank for daily spending and budgeting.
 
-| Metric | Neobanks (Digital-First) | Traditional (Incumbent) | Ratio |
+|Metric|Neobanks (Digital-First)|Traditional (Incumbent)|Ratio|
 |--------|--------------------------|--------------------------|--------|
 | Active Relationship | ~50% of UK Adults | ~95%+ of UK Adults | 1 : 2 |
 | Primary Account | ~6% – 9% | ~91% – 94% | 1 : 15 |
