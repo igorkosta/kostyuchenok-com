@@ -30,6 +30,12 @@ jobs:
           VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
           VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
 
+      - name: create blog directory
+        run: mkdir -p dist/blog
+
+      - name: Add Blog fallback for GitHub Pages
+        run: cp dist/index.html dist/blog/index.html
+
       - name: Add SPA fallback for GitHub Pages
         run: cp dist/index.html dist/404.html
 
