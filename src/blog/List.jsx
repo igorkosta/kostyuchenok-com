@@ -26,7 +26,6 @@ export default function BlogList() {
               to={`/blog/${post.slug}`}
               className="
                 block
-                text-center
                 py-5
                 px-6
                 rounded-xl
@@ -38,6 +37,9 @@ export default function BlogList() {
             >
               <div className="text-lg md:text-xl font-semibold text-gray-900">
                 {post.title}
+              </div>
+              <div className="text-ms">
+                {post.description}
               </div>
               <div className="text-sm text-gray-500 mt-1">
                 {post.date.toISOString().slice(0, 10)}

@@ -1,7 +1,8 @@
 ---
 title: Incumbents’ Trap
 date: 2026-01-02
-description: Incumbents’ Trap
+description: Despite the recent advancements of neobanks, incumbents are still the driving banking force of the financial world. Let’s take a look at some numbers — and to make it more “dramatic,” we’ll focus on the UK.
+
 ---
 
 Despite the recent advancements of neobanks, incumbents are still the driving banking force of the financial world. Let’s take a look at some numbers — and to make it more “dramatic,” we’ll focus on the UK.

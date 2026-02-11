@@ -1,7 +1,7 @@
 ---
 title: Only Ecosystems Will Survive
 date: 2026-01-31
-description: Ecosystem Banking
+description: The world of banking is at the verge of big changes that most incumbents are desperately trying to ignore.
 ---
 
 The world of banking is at the verge of big changes that most incumbents are desperately trying to ignore. They see the change coming, they realize that their inactivity will cost them their existence but they are choosing to play dead. It's easier to cut the jobs and walk out with the bonuses then to start acting to still be relevant in 5-10 years. It's easier to lobby its dominant position in the market than invest in its technology and people.
