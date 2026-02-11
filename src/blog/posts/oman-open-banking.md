@@ -1,6 +1,6 @@
 ---
 title: "Oman: Open Banking Outlook"
-date: 2026-11-02
+date: 2026-02-11
 description: Oman's banking sector has shown consistent growth over the last decade, with total assets almost doubling from RO 25.8 billion in 2015 to a projected RO 47.8 billion by the end of 2025.
 ---
 
