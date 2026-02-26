@@ -260,7 +260,6 @@ p {
   margin: 0 0.5rem;
   border-radius: 999px;
   border: 1px solid #b3e0ff;
-  width: auto;
 }
 
 .talk .description a {
@@ -636,6 +635,7 @@ footer a:hover {
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .book-details h3 {
