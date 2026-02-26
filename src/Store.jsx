@@ -28,7 +28,6 @@ export default function Store() {
       <div className="store-container">
         <div className="store-header">
           <h1>Bookstore</h1>
-          <p className="store-subtitle">Instant digital delivery via Gumroad — PDF & EPUB formats</p>
         </div>
 
         <div className="book-list">
@@ -43,10 +42,10 @@ export default function Store() {
                 <p className="book-desc">{book.description}</p>
                 <div className="book-price">${book.price} USD</div>
                 <div className="book-actions">
-                  <a 
-                    href={book.amazonLink} 
+                  <a
+                    href={book.amazonLink}
                     className="buy-button"
-                    target="_blank" 
+                    target="_blank"
                     rel="noopener noreferrer"
                   >
                     Buy on Amazon
@@ -58,7 +57,6 @@ export default function Store() {
         </div>
 
         <div className="store-footer">
-          <p>Questions? Contact me at <a href="mailto:igor@kostyuchenok.com">igor@kostyuchenok.com</a></p>
         </div>
       </div>
 
