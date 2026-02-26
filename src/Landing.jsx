@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import profilePic from "./assets/vertical-me.png";
 import { scrollToSection } from "./utils/scrollToSection";
+import { books } from "./data/books";
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -45,23 +46,6 @@ export default function Landing() {
     }
   ];
 
-  const books = [
-    {
-      title: "Startup, Please",
-      description: "Startup, Please: What you need to know before starting your own company",
-      language: "English",
-      cover: "../img/startup-please.jpg",
-      link: "https://bookgoodies.com/a/B0BWFK212S"
-    },
-    {
-      title: "FinTech 101",
-      description: "FinTech 101 is a very short introduction into the world of FinTech, from the first Banks of Mesopotamia to Blockchain and Bitcoin.",
-      language: "English",
-      cover: "../img/fintech-101.jpg",
-      link: "https://bookgoodies.com/a/B0F8DNP1HG"
-    }
-  ];
-
   const socialLinks = [
     { name: "LinkedIn", href: "https://www.linkedin.com/in/igorkostyuchenok/" },
     { name: "Finextra", href: "https://www.finextra.com/bloggers/165855" },
@@ -77,10 +61,11 @@ export default function Landing() {
             <div className="logo">Igor Kostyuchenok</div>
           </a>
           <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-            <a onClick={() => {scrollToSection("talks")}}>/ Talks</a>
-            <a onClick={() => {scrollToSection("books")}}>/ Books</a>
-            <a onClick={() => navigate("/blog")}>/ Blog</a>
-            <a href="https://newsletter.kostyuchenok.com" target="_blank">/ Newsletter</a>
+            <a onClick={() => {scrollToSection("talks")}}>Talks</a>
+            <a onClick={() => {scrollToSection("books")}}>Books</a>
+            <a onClick={() => navigate("/store")}>Store</a>
+            <a onClick={() => navigate("/blog")}>Blog</a>
+            <a href="https://newsletter.kostyuchenok.com" target="_blank">Newsletter</a>
           </nav>
 
           {/* Hamburger Button */}
@@ -138,8 +123,14 @@ export default function Landing() {
 
       <section id="books">
         <h2>Books</h2>
+        <p className="section-subtitle">
+          Buy directly via Gumroad (instant delivery) or on Amazon
+        </p>
+        <div className="books-cta">
+          <a href="/store" className="store-link">View Store →</a>
+        </div>
         {books.map((b) => (
-          <div key={b.title} className="book-section">
+          <div key={b.id} className="book-section">
             <div className="talk">
               <div className="description">
                 <div>
@@ -147,12 +138,12 @@ export default function Landing() {
                   <span className="language-pill">{b.language}</span>
                 </div>
                 <p>{b.description}</p>
-                <a href={b.link} target="_blank" rel="noopener noreferrer">
+                <a href={b.amazonLink} target="_blank" rel="noopener noreferrer">
                   Buy on Amazon
                 </a>
               </div>
               <div className="cover">
-                <a href={b.link} target="_blank" rel="noopener noreferrer">
+                <a href={b.amazonLink} target="_blank" rel="noopener noreferrer">
                   <img src={b.cover} alt={b.title} />
                 </a>
               </div>
