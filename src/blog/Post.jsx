@@ -38,9 +38,11 @@ export default function BlogPost() {
         </p>
 
         <article className="prose max-w-none">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {post.content}
-          </ReactMarkdown>
+          <div className="overflow-x-auto">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {post.content}
+            </ReactMarkdown>
+          </div>
         </article>
       </div>
 
