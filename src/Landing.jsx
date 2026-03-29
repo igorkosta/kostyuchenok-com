@@ -65,6 +65,7 @@ export default function Landing() {
             <a onClick={() => {scrollToSection("books")}}>Books</a>
             <a onClick={() => navigate("/store")}>Store</a>
             <a onClick={() => navigate("/blog")}>Blog</a>
+            <a onClick={() => navigate("/shorts")}>Shorts</a>
             <a href="https://newsletter.kostyuchenok.com" target="_blank">Newsletter</a>
           </nav>
 
