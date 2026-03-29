@@ -2,14 +2,14 @@
   version: 2,
   builds: [
     {
-      src: api/telegram.js,
-      use: @vercel/node
+      src: 'api/telegram.js',
+      use: '@vercel/node'
     }
   ],
   routes: [
     {
-      src: /api/(.*),
-      dest: /api/telegram.js
+      src: '/api/(.*)',
+      dest: '/api/telegram.js'
     }
   ]
 }
