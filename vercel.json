@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "echo 'Frontend built on GitHub Pages'",
+  "ignore": "true",
   "builds": [
     {
       "src": "api/telegram.js",

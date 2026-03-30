@@ -62,7 +62,6 @@ export default function Landing() {
           </a>
           <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
             <a onClick={() => {scrollToSection("talks")}}>Talks</a>
-            <a onClick={() => {scrollToSection("books")}}>Books</a>
             <a onClick={() => navigate("/store")}>Store</a>
             <a onClick={() => navigate("/blog")}>Blog</a>
             <a onClick={() => navigate("/shorts")}>Shorts</a>
