@@ -18,7 +18,7 @@ export default function Landing() {
   useEffect(() => {
       currentYear();
       if (locationData.latitude && locationData.longitude) {
-        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${locationData.latitude}&lon=${locationData.longitude}&format=json`)
+        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${locationData.latitude}&lon=${locationData.longitude}&format=json&accept-language=en`)
           .then(res => res.json())
           .then(data => {
             const city = data.address.city || data.address.town || data.address.village || data.address.county;
