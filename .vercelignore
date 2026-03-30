@@ -1,0 +1,11 @@
+src/
+public/
+index.html
+package.json
+vite.config.js
+tailwind.config.js
+postcss.config.js
+eslint.config.js
+node_modules/
+dist/
+.github/
