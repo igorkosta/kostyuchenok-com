@@ -50,11 +50,14 @@ export default function Shorts() {
                 "
               >
                 <time className="text-sm text-gray-500">
-                  {new Date(short.date).toLocaleDateString('en-US', {
+                  {new Date(short.date).toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'long',
-                    day: 'numeric'
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
                   })}
+                  {short.id && <span className="ml-2 text-xs text-gray-400">id:{short.id}</span>}
                 </time>
                 <div className="mt-2 prose prose-sm max-w-none">
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
