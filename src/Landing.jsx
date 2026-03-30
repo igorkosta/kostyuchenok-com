@@ -3,16 +3,32 @@ import { useNavigate, Link } from "react-router-dom";
 import profilePic from "./assets/vertical-me.png";
 import { scrollToSection } from "./utils/scrollToSection";
 import { books } from "./data/books";
+import locationData from "./data/location.json";
 
 export default function Landing() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const [year, setYear] = useState();
+  const [location, setLocation] = useState(null);
   const currentYear = () =>  setYear(new Date().getFullYear())
 
   useEffect(() => {
       currentYear();
+      if (locationData.latitude && locationData.longitude) {
+        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${locationData.latitude}&lon=${locationData.longitude}&format=json`)
+          .then(res => res.json())
+          .then(data => {
+            const city = data.address.city || data.address.town || data.address.village || data.address.county;
+            const country = data.address.country;
+            if (city && country) {
+              setLocation(`${city}, ${country}`);
+            } else if (country) {
+              setLocation(country);
+            }
+          })
+          .catch(() => {});
+      }
   }, [])
 
   const talks = [
@@ -159,7 +175,7 @@ export default function Landing() {
           <div className="about-me-bio">
             <p>Serial entrepreneur, speaker, and C-Level mentor.</p>
             <p>{year - 2010}+ years of experience in the FinTech industry creating innovative products and services for Banks and FinTechs.</p>
-            <p>Based in Europe.</p>
+            <p>Based in {location || "Europe"}.</p>
           </div>
         </div>
       </section>

@@ -56,6 +56,24 @@ async function deleteFile(path) {
   );
 }
 
+const LOCATION_FILE = 'src/data/location.json';
+
+async function saveLocation(location) {
+  const data = JSON.stringify({
+    latitude: location.latitude,
+    longitude: location.longitude,
+    updatedAt: new Date().toISOString()
+  }, null, 2);
+  
+  const sha = await getFileSha(LOCATION_FILE);
+  await commitFile(
+    LOCATION_FILE,
+    data,
+    'Update location',
+    sha
+  );
+}
+
 async function downloadTelegramFile(fileId) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
 
@@ -121,8 +139,31 @@ export default async function handler(req, res) {
 
   const { message } = req.body;
 
-  if (!message || !message.text && !message.photo) {
+  if (!message || (!message.text && !message.photo && !message.location)) {
     return res.status(400).json({ error: 'No message content' });
+  }
+
+  if (message.location) {
+    try {
+      await saveLocation(message.location);
+      await axios.post(
+        `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+        {
+          chat_id: message.chat.id,
+          text: `✅ Location updated: ${message.location.latitude}, ${message.location.longitude}`,
+        }
+      );
+    } catch (e) {
+      console.error('Failed to save location:', e.message);
+      await axios.post(
+        `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+        {
+          chat_id: message.chat.id,
+          text: `❌ Failed to save location: ${e.message}`,
+        }
+      );
+    }
+    return res.status(200).json({ ok: true });
   }
 
   const chatId = String(message.chat.id);
