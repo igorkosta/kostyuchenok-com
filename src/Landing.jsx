@@ -4,6 +4,8 @@ import profilePic from "./assets/vertical-me.png";
 import { scrollToSection } from "./utils/scrollToSection";
 import { books } from "./data/books";
 import locationData from "./data/location.json";
+import { MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -91,6 +93,19 @@ export default function Landing() {
         </div>
       </header>
 
+      <section id="about-me">
+        <div className="about-me-container">
+          <div className="about-me-image">
+            <img src={profilePic} alt="Igor" />
+          </div>
+          <div className="about-me-bio">
+            <p>Serial entrepreneur, speaker, and C-Level mentor.</p>
+            <p>{year - 2010}+ years of experience in the FinTech industry creating innovative products and services for Banks and FinTechs.</p>
+            <p><motion.span animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} style={{ display: 'inline-flex', marginRight: '6px' }}><MapPin size={24} color="#ef4444" style={{ display: 'inline', verticalAlign: 'middle' }} /></motion.span>Currently in {location || "Europe"}.</p>
+          </div>
+        </div>
+      </section>
+
       <div className="hero">
         <h1>
           Driving Digital Transformation & Resilient Infrastructure in Regulated Environments.
@@ -166,18 +181,6 @@ export default function Landing() {
             </div>
           </div>
         ))}
-      </section>
-      <section id="about-me">
-        <div className="about-me-container">
-          <div className="about-me-image">
-            <img src={profilePic} alt="Igor" />
-          </div>
-          <div className="about-me-bio">
-            <p>Serial entrepreneur, speaker, and C-Level mentor.</p>
-            <p>{year - 2010}+ years of experience in the FinTech industry creating innovative products and services for Banks and FinTechs.</p>
-            <p>Based in {location || "Europe"}.</p>
-          </div>
-        </div>
       </section>
 
       <section id="contact-me">
