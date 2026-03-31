@@ -18,8 +18,6 @@ const shortModules = import.meta.glob("./shorts/*.md", { query: '?raw', import: 
 
 export const shorts = Object.entries(shortModules).map(([path, content]) => {
   const slug = path.split("/").pop().replace(".md", "");
-  const filename = path.split("/").pop().replace(".md", "");
-  const date = new Date(filename);
   const { data, content: markdown } = matter(content);
   
   return {
@@ -27,7 +25,7 @@ export const shorts = Object.entries(shortModules).map(([path, content]) => {
     type: "short",
     id: data.id,
     telegram_id: data.telegram_id,
-    date: isNaN(date.getTime()) ? new Date().toISOString() : date.toISOString(),
+    date: data.datetime || new Date().toISOString(),
     content: markdown.trim(),
   };
 }).sort((a, b) => new Date(b.date) - new Date(a.date));

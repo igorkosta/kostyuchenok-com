@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { randomBytes } from 'crypto';
 
 const GITHUB_REPO = 'igorkosta/kostyuchenok-com';
 const SHORTS_PATH = 'src/blog/shorts';
@@ -89,7 +90,7 @@ async function downloadTelegramFile(fileId) {
 }
 
 function generateId() {
-  return Math.random().toString(36).substring(2, 15);
+  return randomBytes(3).toString('hex');
 }
 
 export default async function handler(req, res) {
@@ -176,27 +177,26 @@ export default async function handler(req, res) {
   const text = message.text || '';
   
   if (text.startsWith('/delete ')) {
-    const slug = text.replace('/delete ', '').trim();
+    const shortId = text.replace('/delete ', '').trim();
     try {
-      await deleteFile(`${SHORTS_PATH}/${slug}.md`);
+      await deleteFile(`${SHORTS_PATH}/${shortId}.md`);
       
-      const shortFiles = await axios.get(
-        `https://api.github.com/repos/${GITHUB_REPO}/contents/${SHORTS_PATH}`,
+      const imageFiles = await axios.get(
+        `https://api.github.com/repos/${GITHUB_REPO}/contents/${IMAGES_PATH}`,
         { headers: await getGitHubHeaders() }
       );
       
-      const imageFiles = shortFiles.data.filter(f => f.name.startsWith(slug) && f.name.includes('-'));
+      const filesToDelete = imageFiles.data.filter(f => f.name.startsWith(shortId));
       
-      for (const file of imageFiles) {
-        await deleteFile(`${SHORTS_PATH}/${file.name}`);
-        await deleteFile(`${IMAGES_PATH}/${file.name.replace('.md', '.jpg')}`);
+      for (const file of filesToDelete) {
+        await deleteFile(`${IMAGES_PATH}/${file.name}`);
       }
       
       await axios.post(
         `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
         {
           chat_id: chatId,
-          text: `✅ Deleted short: ${slug}`,
+          text: `✅ Deleted short: ${shortId}`,
         }
       );
       return res.status(200).json({ ok: true });
@@ -214,10 +214,11 @@ export default async function handler(req, res) {
   }
 
   const timestamp = new Date(message.date * 1000);
-  const slug = timestamp.toISOString().replace(/[:.]/g, '-').slice(0, 23);
-  const baseFilename = slug;
+  const timestampStr = timestamp.toISOString();
 
   const mdContent = text;
+
+  const shortId = generateId();
 
   const imageUrls = [];
 
@@ -227,7 +228,7 @@ export default async function handler(req, res) {
     for (let i = 0; i < photos.length; i++) {
       const photo = photos[i];
       const ext = 'jpg';
-      const imageFilename = `${baseFilename}-${i + 1}.${ext}`;
+      const imageFilename = `${shortId}-${i + 1}.${ext}`;
 
       try {
         const imageData = await downloadTelegramFile(photo.file_id);
@@ -248,17 +249,16 @@ export default async function handler(req, res) {
     }
   }
 
-  const shortId = generateId();
-  let finalContent = `---\nid: ${shortId}\ntelegram_id: ${message.message_id}\n---\n\n${mdContent}`;
+  let finalContent = `---\nid: ${shortId}\ndatetime: ${timestampStr}\ntelegram_id: ${message.message_id}\n---\n\n${mdContent}`;
   for (const url of imageUrls) {
     finalContent += `\n\n![image](${url})`;
   }
 
-  const sha = await getFileSha(`${SHORTS_PATH}/${baseFilename}.md`);
+  const sha = await getFileSha(`${SHORTS_PATH}/${shortId}.md`);
   await commitFile(
-    `${SHORTS_PATH}/${baseFilename}.md`,
+    `${SHORTS_PATH}/${shortId}.md`,
     finalContent,
-    `Add short: ${baseFilename}`,
+    `Add short: ${shortId}`,
     sha
   );
 
@@ -266,7 +266,7 @@ export default async function handler(req, res) {
     `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
     {
       chat_id: chatId,
-      text: `✅ Published to https://kostyuchenok.com/shorts`,
+      text: `✅ Published to https://kostyuchenok.com/shorts\n\nID: ${shortId}\nDelete: /delete ${shortId}`,
     }
   );
 
