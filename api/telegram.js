@@ -178,9 +178,14 @@ export default async function handler(req, res) {
   
   if (text.startsWith('/delete ')) {
     const shortId = text.replace('/delete ', '').trim();
+    
     try {
       await deleteFile(`${SHORTS_PATH}/${shortId}.md`);
-      
+    } catch (e) {
+      console.error('Failed to delete short file:', e.message);
+    }
+    
+    try {
       const imageFiles = await axios.get(
         `https://api.github.com/repos/${GITHUB_REPO}/contents/${IMAGES_PATH}`,
         { headers: await getGitHubHeaders() }
@@ -189,9 +194,17 @@ export default async function handler(req, res) {
       const filesToDelete = imageFiles.data.filter(f => f.name.startsWith(shortId));
       
       for (const file of filesToDelete) {
-        await deleteFile(`${IMAGES_PATH}/${file.name}`);
+        try {
+          await deleteFile(`${IMAGES_PATH}/${file.name}`);
+        } catch (e) {
+          // Ignore if image doesn't exist
+        }
       }
-      
+    } catch (e) {
+      // Ignore if images directory doesn't exist
+    }
+    
+    try {
       await axios.post(
         `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
         {
@@ -199,18 +212,11 @@ export default async function handler(req, res) {
           text: `✅ Deleted short: ${shortId}`,
         }
       );
-      return res.status(200).json({ ok: true });
     } catch (e) {
-      console.error('Delete failed:', e.message);
-      await axios.post(
-        `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
-        {
-          chat_id: chatId,
-          text: `❌ Failed to delete short: ${e.message}`,
-        }
-      );
-      return res.status(200).json({ ok: true });
+      console.error('Failed to send Telegram message:', e.message);
     }
+    
+    return res.status(200).json({ ok: true });
   }
 
   const timestamp = new Date(message.date * 1000);

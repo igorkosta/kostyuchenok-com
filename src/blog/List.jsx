@@ -1,31 +1,11 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { posts } from "./index";
 import heroImage from "../assets/blog-hero.jpg";
+import Layout from "../Layout";
 
 export default function BlogList() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-
   return (
-    <div className="min-h-screen">
-      <header>
-        <div className="nav-container">
-          <Link to="/">
-            <div className="logo">Igor Kostyuchenok</div>
-          </Link>
-          <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-            <Link to="/">Home</Link>
-            <Link to="/store">Store</Link>
-            <Link to="/blog" className="active">Blog</Link>
-            <a href="https://newsletter.kostyuchenok.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
-          </nav>
-          <button className="menu-toggle" onClick={toggleMenu}>
-            ☰
-          </button>
-        </div>
-      </header>
-
+    <Layout>
       <div className="flex justify-center px-4">
         <div className="w-[80%] max-w-4xl py-12">
           <div className="w-full mb-10">
@@ -70,10 +50,6 @@ export default function BlogList() {
           </div>
         </div>
       </div>
-
-      <footer>
-        <p>© {new Date().getFullYear()} Igor Kostyuchenok. All rights reserved.</p>
-      </footer>
-    </div>
+    </Layout>
   );
 }

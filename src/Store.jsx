@@ -1,30 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import { books } from "./data/books";
+import Layout from "./Layout";
 
 export default function Store() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-
   return (
-    <div className="store-page">
-      <header>
-        <div className="nav-container">
-          <Link to="/">
-            <div className="logo">Igor Kostyuchenok</div>
-          </Link>
-          <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-            <Link to="/">Home</Link>
-            <Link to="/store" className="active">Store</Link>
-            <Link to="/blog">Blog</Link>
-            <a href="https://newsletter.kostyuchenok.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
-          </nav>
-          <button className="menu-toggle" onClick={toggleMenu}>
-            ☰
-          </button>
-        </div>
-      </header>
-
+    <Layout>
       <div className="store-container">
         <div className="store-header">
           <h1>Bookstore</h1>
@@ -59,10 +38,6 @@ export default function Store() {
         <div className="store-footer">
         </div>
       </div>
-
-      <footer>
-        <p>© {new Date().getFullYear()} Igor Kostyuchenok. All rights reserved.</p>
-      </footer>
-    </div>
+    </Layout>
   );
 }

@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import profilePic from "./assets/vertical-me.png";
 import { scrollToSection } from "./utils/scrollToSection";
 import { books } from "./data/books";
 import locationData from "./data/location.json";
 import { MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import Layout from "./Layout";
 
 export default function Landing() {
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
   const [year, setYear] = useState();
   const [location, setLocation] = useState(null);
   const currentYear = () =>  setYear(new Date().getFullYear())
@@ -38,28 +37,28 @@ export default function Landing() {
       title: "● New Paradigm in Consumer Lending",
       description: "Panel Discussion at the UNCHAIN FinTech Festival in Oradea, Romania in 2025",
       language: "English",
-      videoId: "vBu4ByJGNU4", // another example ID
+      videoId: "vBu4ByJGNU4",
       href: "//www.youtube.com/embed/vBu4ByJGNU4"
     },
     {
       title: "● CLOUD MIGRATION",
       description: "Moderating the Cloud Migraion panel at theUNCHAIN FinTech Festival in Oradea, Romania in 2025",
       language: "English",
-      videoId: "Ae4jC65yc78", // another example ID
+      videoId: "Ae4jC65yc78",
       href: "//www.youtube.com/embed/Ae4jC65yc78"
     },
     {
       title: "● Evolution of Neobanks",
       description: "On the evolution and the future of neobanks and neobanking. Keynote at the Rocket Conf 2024 in Almaty, Kazakhstan",
       language: "Russian",
-      videoId: "iXaRbtYwcUI", // another example ID
+      videoId: "iXaRbtYwcUI",
       href: "//www.youtube.com/embed/iXaRbtYwcUI"
     },
     {
       title: "● How FinTech changes the Future",
       description: "Panel discussion on the future of FinTech, Payments and Banking. Rocket Conf 2024 in Almaty, Kazakhstan",
       language: "Russian",
-      videoId: "C8_3QDyIr6o", // another example ID
+      videoId: "C8_3QDyIr6o",
       href: "//www.youtube.com/embed/C8_3QDyIr6o"
     }
   ];
@@ -72,27 +71,7 @@ export default function Landing() {
   ];
 
   return (
-    <div>
-      <header>
-        <div className="nav-container">
-          <a href="/">
-            <div className="logo">Igor Kostyuchenok</div>
-          </a>
-          <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-            <a onClick={() => {scrollToSection("talks")}}>Talks</a>
-            <a onClick={() => navigate("/store")}>Store</a>
-            <a onClick={() => navigate("/blog")}>Blog</a>
-            <a onClick={() => navigate("/shorts")}>Shorts</a>
-            <a href="https://newsletter.kostyuchenok.com" target="_blank">Newsletter</a>
-          </nav>
-
-          {/* Hamburger Button */}
-          <button className="menu-toggle" onClick={toggleMenu}>
-            ☰
-          </button>
-        </div>
-      </header>
-
+    <Layout>
       <section id="about-me">
         <div className="about-me-container">
           <div className="about-me-image">
@@ -109,9 +88,6 @@ export default function Landing() {
       <div className="hero">
         <h1>
           Driving Digital Transformation & Resilient Infrastructure in Regulated Environments.
-          <a href="https://buzzme.now" target="_blank" rel="noopener noreferrer" className="connect-button">
-            Buzz Me
-          </a>
         </h1>
       </div>
 
@@ -189,12 +165,6 @@ export default function Landing() {
           <a href="mailto:igor@kostyuchenok.com">igor@kostyuchenok.com</a>
         </h1>
       </section>
-
-      <footer>
-        {socialLinks.map((s, i) => (
-          <a key={i} href={s.href} target="_blank" rel="noopener noreferrer">{s.name}</a>
-        ))}
-      </footer>
-    </div>
+    </Layout>
   );
 }
