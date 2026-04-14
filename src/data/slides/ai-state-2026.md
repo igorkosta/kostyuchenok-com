@@ -1,5 +1,8 @@
 # The State of AI: A Critical View
 
+Note:
+Welcome everyone. Today I'll give a balanced view of AI - not the hype, not the fear, but what's actually happening.
+
 ---
 
 ![Software Meltdown](./SoftwareMeltdown.jpeg)
@@ -8,7 +11,6 @@
 
 ### The Narrative
 
-
 - AI will solve everything
 - AGI is around the corner
 - Human-level intelligence imminent
@@ -16,11 +18,20 @@
 - Singularity is near
 - We should be scared... or excited?
 
+Note:
+This is the dominant narrative in tech media. Every week there's a new breakthrough. But let's look at reality.
+
 ---
 
 ![Dario Sam](./DarioSam.webp)
+
 ---
 
+![ClaudeCode1](./claude-1.png?w=500)
+![ClaudeCode2](./claude-2.jpeg)
+[Link to post](https://www.linkedin.com/posts/thomas-wiesner_claude-coding-softwaredevelopment-activity-7449779801055244289-Z_ra)
+
+---
 ### Industries
 
 - Banking & Credit Scoring
@@ -58,6 +69,9 @@
 - The internet is finite
 - Quality matters
 - Copyright issues
+
+Note:
+The compute costs are enormous. Only 3 companies can afford to train frontier models. This is not democratized AI.
 
 ---
 

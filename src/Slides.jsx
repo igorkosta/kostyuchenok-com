@@ -1,47 +1,64 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import slideContent from './data/slides/ai-state-2026.md?raw';
 import SoftwareMeltdown from './data/slides/SoftwareMeltdown.jpeg';
 import DarioSam from './data/slides/DarioSam.webp';
+import ClaudeCode2 from './data/slides/claude.jpeg';
+import ClaudeCode1 from './data/slides/claude-1.png';
 
 const images = {
   'SoftwareMeltdown.jpeg': SoftwareMeltdown,
-  'DarioSam.webp': DarioSam
+  'DarioSam.webp': DarioSam,
+  'claude-1.png': ClaudeCode1,
+  'claude-2.jpeg': ClaudeCode2,
 };
 
 const parseSlides = (md) => {
-  return md.split(/^---$/m).map(s => s.trim()).filter(s => s);
+  return md.split(/^---$/m).map(s => {
+    const parts = s.split(/^Note:/m);
+    const content = parts[0].trim();
+    const notes = parts[1] ? parts[1].trim() : '';
+    return { content, notes };
+  }).filter(s => s.content);
 };
 
-const simpleMarkdown = (text) => {
-  let html = text;
+const Image = ({ src, alt }) => {
+  const filename = src?.replace('./', '').split('?')[0] || '';
+  const img = images[filename];
+  
+  if (!img) return <span>Image not found: {src}</span>;
+  
+  let width = '80%';
+  let height = '80%';
+  
+  const urlParams = new URLSearchParams(src.split('?')[1] || '');
+  const w = urlParams.get('w');
+  const h = urlParams.get('h');
+  
+  if (w) width = w + 'px';
+  if (h) height = h + 'px';
+  
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+      <img src={img} alt={alt || ''} style={{ width, height, objectFit: 'contain' }} />
+    </div>
+  );
+};
 
-  // Handle images first (not anchored to line start)
-  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, src) => {
-    const filename = src.replace('./', '');
-    const img = images[filename];
-    return img ? `<div style="display:flex; justify-content:center; align-items:center; height:100%;"><img src="${img}" alt="${alt}" style="max-width:80%; max-height:80%; object-fit:contain;" /></div>` : match;
-  });
-
-  // Then handle headers
-  html = html
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^- (.+)$/gm, '<li>$1</li>');
-
-  // Wrap consecutive <li> elements in <ul>
-  html = html.replace(/(<li>[\s\S]*?<\/li>)(\s*<li>[\s\S]*?<\/li>)*/g, '<ul>$&</ul>');
-
-  // Wrap <ul> in <div> for better spacing
-  html = html.replace(/(<ul>[\s\S]*?<\/ul>)/g, '<div class="list">$1</div>');
-
-  return html;
+const components = {
+  img: ({ src, alt }) => <Image src={src} alt={alt} />,
+  h1: ({ children }) => <h1 style={{ fontSize: '2.5em', marginBottom: '0.5em' }}>{children}</h1>,
+  h2: ({ children }) => <h2 style={{ fontSize: '1.8em', marginBottom: '0.5em' }}>{children}</h2>,
+  h3: ({ children }) => <h3 style={{ fontSize: '1.3em' }}>{children}</h3>,
+  ul: ({ children }) => <ul style={{ margin: '10px 0' }}>{children}</ul>,
+  li: ({ children }) => <li style={{ margin: '8px 0' }}>{children}</li>
 };
 
 export default function Slides() {
   const { slug } = useParams();
   const deckRef = useRef(null);
+  const deckInstance = useRef(null);
   const ready = useRef(false);
 
   const slidesBySlug = {
@@ -55,9 +72,9 @@ export default function Slides() {
     if (slides.length > 0 && window.Reveal && !ready.current) {
       ready.current = true;
 
-      const deck = new window.Reveal(deckRef.current, {
+      deckInstance.current = new window.Reveal(deckRef.current, {
         hash: true,
-        embedded: true,
+        embedded: false,
         keyboard: true,
         transition: 'slide',
         margin: 0,
@@ -65,24 +82,97 @@ export default function Slides() {
         center: false
       });
 
-      deck.initialize().then(() => {
-        deck.layout();
+      deckInstance.current.initialize().then(() => {
+        deckInstance.current.layout();
+        deckInstance.current.sync();
       });
     }
   }, [slides.length]);
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [showSpeaker, setShowSpeaker] = useState(false);
+
+  useEffect(() => {
+    if (deckInstance.current) {
+      deckInstance.current.on('slidechanged', event => {
+        setCurrentSlide(event.indexh);
+      });
+    }
+  }, []);
+
+  const openSpeakerView = () => {
+    setShowSpeaker(!showSpeaker);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 's' || e.key === 'S') {
+        setShowSpeaker(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (showSpeaker && deckInstance.current) {
+      deckInstance.current.layout();
+    }
+  }, [showSpeaker, slides.length]);
 
   if (slides.length === 0) {
     return <div style={{ padding: 50, color: '#fff' }}>Slides not found: {slug}</div>;
   }
 
   return (
-    <div ref={deckRef} className="reveal" style={{ height: '100vh' }}>
+      <div>
+      {showSpeaker && (
+        <div style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '200px',
+          background: '#1a1a1a',
+          color: '#fff',
+          padding: '20px',
+          zIndex: 9998,
+          overflow: 'auto',
+          borderTop: '2px solid #333'
+        }}>
+          <div style={{ fontSize: '14px', color: '#888', marginBottom: '10px' }}>SPEAKER NOTES</div>
+          <div style={{ fontSize: '16px', whiteSpace: 'pre-wrap' }}>
+            {slides[currentSlide]?.notes || 'No notes for this slide'}
+          </div>
+        </div>
+      )}
+      <button
+        onClick={openSpeakerView}
+        style={{
+          position: 'fixed',
+          bottom: 20,
+          right: 20,
+          padding: '10px 20px',
+          background: '#333',
+          color: '#fff',
+          border: 'none',
+          borderRadius: 5,
+          cursor: 'pointer',
+          zIndex: 9999
+        }}
+      >
+        Speaker View (S)
+      </button>
+      <div ref={deckRef} className="reveal" style={{ height: '100vh' }}>
       <div className="slides">
         {slides.map((slide, i) => (
-          <section key={i} dangerouslySetInnerHTML={{ __html: simpleMarkdown(slide) }} />
+          <section key={i}>
+            <ReactMarkdown components={components}>{slide.content}</ReactMarkdown>
+          </section>
         ))}
       </div>
-      <style>{`
+<style>{`
+        .reveal { color: #fff; }
         .reveal .slides {
           display: flex !important;
           justify-content: center !important;
@@ -92,12 +182,8 @@ export default function Slides() {
           padding: 0 !important;
           width: 100% !important;
         }
-        .reveal h1 { font-size: 2.5em; margin-bottom: 0.5em; }
-        .reveal h2 { font-size: 1.8em; margin-bottom: 0.5em; }
-        .reveal h3 { font-size: 1.3em; }
-        .reveal ul { margin: 10px 0; }
-        .reveal li { margin: 8px 0; }
       `}</style>
+      </div>
     </div>
   );
 }

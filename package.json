@@ -20,7 +20,6 @@
     "react-router-dom": "^7.13.0",
     "remark-gfm": "^4.0.1",
     "remark-rehype": "^11.1.2",
-    "reveal.js": "^6.0.1",
     "vite": "^7.1.2",
     "vite-plugin-node-polyfills": "^0.25.0"
   },
