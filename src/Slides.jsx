@@ -1,17 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import slideContent from './data/slides/ai-state-2026.md?raw';
-import SoftwareMeltdown from './data/slides/SoftwareMeltdown.jpeg';
-import DarioSam from './data/slides/DarioSam.webp';
-import ClaudeCode2 from './data/slides/claude.jpeg';
-import ClaudeCode1 from './data/slides/claude-1.png';
 
-const images = {
-  'SoftwareMeltdown.jpeg': SoftwareMeltdown,
-  'DarioSam.webp': DarioSam,
-  'claude-1.png': ClaudeCode1,
-  'claude-2.jpeg': ClaudeCode2,
+const importImages = import.meta.glob('./data/slides/*/*.png') || {};
+const importImagesJpg = import.meta.glob('./data/slides/*/*.jpeg') || {};
+const importImagesWebp = import.meta.glob('./data/slides/*/*.webp') || {};
+
+const getImagesForKeynote = (slug) => {
+  const images = {};
+  
+  const allImages = { ...importImages, ...importImagesJpg, ...importImagesWebp };
+  
+  Object.entries(allImages).forEach(([path, loader]) => {
+    if (path.includes(`/${slug}/`)) {
+      const filename = path.split('/').pop();
+      images[filename] = loader;
+    }
+  });
+  
+  return images;
 };
 
 const parseSlides = (md) => {
@@ -23,11 +30,21 @@ const parseSlides = (md) => {
   }).filter(s => s.content);
 };
 
-const Image = ({ src, alt }) => {
+const Image = ({ src, alt, images }) => {
   const filename = src?.replace('./', '').split('?')[0] || '';
-  const img = images[filename];
+  const imgLoader = images[filename];
   
-  if (!img) return <span>Image not found: {src}</span>;
+  const [imgSrc, setImgSrc] = useState(null);
+  
+  useEffect(() => {
+    if (imgLoader) {
+      imgLoader().then((mod) => {
+        setImgSrc(mod.default || mod);
+      });
+    }
+  }, [imgLoader]);
+  
+  if (!imgLoader) return <span>Image not found: {src}</span>;
   
   let width = '80%';
   let height = '80%';
@@ -41,31 +58,43 @@ const Image = ({ src, alt }) => {
   
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-      <img src={img} alt={alt || ''} style={{ width, height, objectFit: 'contain' }} />
+      {imgSrc && <img src={imgSrc} alt={alt || ''} style={{ width, height, objectFit: 'contain' }} />}
     </div>
   );
 };
 
-const components = {
-  img: ({ src, alt }) => <Image src={src} alt={alt} />,
-  h1: ({ children }) => <h1 style={{ fontSize: '2.5em', marginBottom: '0.5em' }}>{children}</h1>,
-  h2: ({ children }) => <h2 style={{ fontSize: '1.8em', marginBottom: '0.5em' }}>{children}</h2>,
-  h3: ({ children }) => <h3 style={{ fontSize: '1.3em' }}>{children}</h3>,
-  ul: ({ children }) => <ul style={{ margin: '10px 0' }}>{children}</ul>,
-  li: ({ children }) => <li style={{ margin: '8px 0' }}>{children}</li>
+const SlideContent = ({ content, images }) => {
+  return (
+    <ReactMarkdown
+      components={{
+        img: ({ src, alt }) => <Image src={src} alt={alt} images={images} />,
+        h1: ({ children }) => <h1 style={{ fontSize: '2.5em', marginBottom: '0.5em' }}>{children}</h1>,
+        h2: ({ children }) => <h2 style={{ fontSize: '1.8em', marginBottom: '0.5em' }}>{children}</h2>,
+        h3: ({ children }) => <h3 style={{ fontSize: '1.3em' }}>{children}</h3>,
+        ul: ({ children }) => <ul style={{ margin: '10px 0' }}>{children}</ul>,
+        li: ({ children }) => <li style={{ margin: '8px 0' }}>{children}</li>
+      }}
+    >
+      {content}
+    </ReactMarkdown>
+  );
 };
+
+const slideModules = import.meta.glob('./data/slides/*/*.md', { query: '?raw', import: 'default', eager: true });
 
 export default function Slides() {
   const { slug } = useParams();
   const deckRef = useRef(null);
   const deckInstance = useRef(null);
   const ready = useRef(false);
-
-  const slidesBySlug = {
-    'ai-state-2026': slideContent
-  };
-
-  const rawContent = slidesBySlug[slug] || '';
+  const [images, setImages] = useState({});
+  
+  useEffect(() => {
+    const imgs = getImagesForKeynote(slug);
+    setImages(imgs);
+  }, [slug]);
+  
+  const rawContent = slideModules[`./data/slides/${slug}/${slug}.md`] || '';
   const slides = parseSlides(rawContent);
 
   useEffect(() => {
@@ -167,11 +196,11 @@ export default function Slides() {
       <div className="slides">
         {slides.map((slide, i) => (
           <section key={i}>
-            <ReactMarkdown components={components}>{slide.content}</ReactMarkdown>
+            <SlideContent content={slide.content} images={images} />
           </section>
         ))}
       </div>
-<style>{`
+      <style>{`
         .reveal { color: #fff; }
         .reveal .slides {
           display: flex !important;

@@ -5,10 +5,6 @@ Welcome everyone. Today I'll give a balanced view of AI - not the hype, not the 
 
 ---
 
-![Software Meltdown](./SoftwareMeltdown.jpeg)
-
----
-
 ### The Narrative
 
 - AI will solve everything
@@ -16,22 +12,37 @@ Welcome everyone. Today I'll give a balanced view of AI - not the hype, not the 
 - Human-level intelligence imminent
 - We will all lose our jobs
 - Singularity is near
-- We should be scared... or excited?
+- We should be scared!
 
 Note:
-This is the dominant narrative in tech media. Every week there's a new breakthrough. But let's look at reality.
+This is the dominant narrative in tech media. Every week there's a new breakthrough. But let's look at reality. Who benefits from this narrative?
 
 ---
 
+![Software Meltdown](./SoftwareMeltdown.jpeg)
+
+---
+
+
 ![Dario Sam](./DarioSam.webp)
+
+Note:
+This is a very-well known fear cycle pattern that's been used in marketing for a very long time. You present people with an upcoming problem that may destroy their way of life and you give them the `solution`. Additionally to that current AI models are very good of hooking directly into you dopamine cycle.
+Anthropic has been using this model very affectively to sell their products.
 
 ---
 
 ![ClaudeCode1](./claude-1.png?w=500)
-![ClaudeCode2](./claude-2.jpeg)
+![ClaudeCode2](./claude.jpeg)
 [Link to post](https://www.linkedin.com/posts/thomas-wiesner_claude-coding-softwaredevelopment-activity-7449779801055244289-Z_ra)
 
 ---
+
+### God Complex
+![Garry Tan](./GarryTan.png)
+
+---
+
 ### Industries
 
 - Banking & Credit Scoring
@@ -41,6 +52,15 @@ This is the dominant narrative in tech media. Every week there's a new breakthro
 - HR & Hiring Decisions
 - Criminal Justice
 - Government Benefits
+
+---
+
+### Trendslop (HBR)
+>Researchers Asked LLMs for Strategic Advice. They Got “Trendslop” in Return.
+
+![Trendslop](./trendslop.png?w=500)
+
+[Link to post](https://hbr.org/2023/01/researchers-asked-llms-for-strategic-advice-they-got-trendslop-in-return)
 
 ---
 
