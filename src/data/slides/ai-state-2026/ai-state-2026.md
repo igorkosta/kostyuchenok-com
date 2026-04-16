@@ -17,6 +17,10 @@ Welcome everyone. Today I'll give a balanced view of AI - not the hype, not the 
 Note:
 This is the dominant narrative in tech media. Every week there's a new breakthrough. But let's look at reality. Who benefits from this narrative?
 
+AGI is imminent
+- No coherent definition
+- No path to general intelligence
+- Narrow AI = narrow results
 ---
 
 ![Software Meltdown](./SoftwareMeltdown.jpeg)
@@ -38,11 +42,34 @@ Anthropic has been using this model very affectively to sell their products.
 
 ---
 
-### God Complex
+### God Complex (RLHF)
 ![Garry Tan](./GarryTan.png)
 
+Note:
+RLHF - Reinforcement Learning from Human Feedback
+https://www.youtube.com/watch?v=Q6nem-F8AG8
 ---
 
+### Allbirds
+Allbirds made a surprising announcement Wednesday that it is pivoting from shoes to artificial intelligence.
+The move boosted shares of the miniscule market cap company — it was valued at about $21 million at Tuesday’s close — by 582%. The shares, which were under $3 a day ago, jumped to about $17.
+
+![All Birds](./allbirds.webp)
+
+[CNBC](https://www.cnbc.com/2026/04/15/allbirds-bird-stock-shoes-ai.html)
+
+---
+### Trendslop (HBR)
+>Researchers Asked LLMs for Strategic Advice. They Got “Trendslop” in Return.
+
+![Trendslop](./trendslop.png?w=500)
+
+[Link to post](https://hbr.org/2023/01/researchers-asked-llms-for-strategic-advice-they-got-trendslop-in-return)
+
+Note:
+https://www.youtube.com/watch?v=nDL3Ch7Nz8c
+
+---
 ### Industries
 
 - Banking & Credit Scoring
@@ -55,26 +82,11 @@ Anthropic has been using this model very affectively to sell their products.
 
 ---
 
-### Trendslop (HBR)
->Researchers Asked LLMs for Strategic Advice. They Got “Trendslop” in Return.
+### The Good Parts
 
-![Trendslop](./trendslop.png?w=500)
-
-[Link to post](https://hbr.org/2023/01/researchers-asked-llms-for-strategic-advice-they-got-trendslop-in-return)
-
----
-
-### What's Overstated
-
-### "AI will replace jobs"
-- It amplifies human capability
-- Still needs human oversight
-- New jobs created, old ones transformed
-
-### "AGI is imminent"
-- No coherent definition
-- No path to general intelligence
-- Narrow AI = narrow results
+- An amplifier (Amplifies stupidity as well)
+- Effectively solves mundaine, repetitive tasks
+-
 
 ---
 
