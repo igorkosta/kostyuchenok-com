@@ -51,13 +51,14 @@ https://www.youtube.com/watch?v=Q6nem-F8AG8
 ---
 
 ### Allbirds
-Allbirds made a surprising announcement Wednesday that it is pivoting from shoes to artificial intelligence.
-The move boosted shares of the miniscule market cap company — it was valued at about $21 million at Tuesday’s close — by 582%. The shares, which were under $3 a day ago, jumped to about $17.
 
 ![All Birds](./allbirds.webp)
 
 [CNBC](https://www.cnbc.com/2026/04/15/allbirds-bird-stock-shoes-ai.html)
 
+Note:
+Allbirds made a surprising announcement Wednesday that it is pivoting from shoes to artificial intelligence.
+The move boosted shares of the miniscule market cap company — it was valued at about $21 million at Tuesday’s close — by 582%. The shares, which were under $3 a day ago, jumped to about $17.
 ---
 ### Trendslop (HBR)
 >Researchers Asked LLMs for Strategic Advice. They Got “Trendslop” in Return.
@@ -82,14 +83,33 @@ https://www.youtube.com/watch?v=nDL3Ch7Nz8c
 
 ---
 
-### The Good Parts
-
-- An amplifier (Amplifies stupidity as well)
-- Effectively solves mundaine, repetitive tasks
--
+![Developers](./senior-juniors.png?w=900)
 
 ---
 
+### The Good Parts
+
+- An amplifier (Amplifies stupidity as well)
+
+Note:
+Are we in the bubble - yes. Are the AI agents useful - for some tasks - sure.
+
+---
+
+### Humans
+- Keep the human in the loop
+- Keep the context short
+- Write the critical code yourself (with the help of AI)
+- Focus on the real problems
+
+Note:
+Models learn from all the shitcode we wrote. You don't find a lot of gems on the internet - just remember stack overflow. 90% of the code is garbage.
+
+If you let your agents to write the whole code without reviewing, you will end up with a enterprise grade complexity in 2 to 3 weeks with 2 people and 10 agents.
+
+Once the bugs will pile up and your customers will start calling - who is going to deal with the issues?
+
+---
 ## The Hidden Costs
 
 ### Compute & Energy
