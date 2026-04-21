@@ -1,5 +1,5 @@
 ---
-title: AI Code Quality: The Junior Engineer Equilibrium
+title: "AI Code Quality: The Junior Engineer Equilibrium"
 date: 2026-04-21
 description: More code of lower quality than you might think
 ---
