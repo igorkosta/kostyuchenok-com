@@ -20,7 +20,14 @@ export default function BlogPost() {
 
         <article className="prose max-w-none">
           <div className="overflow-x-auto">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              components={{
+                blockquote: ({node, ...props}) => (
+                  <blockquote className="border-l-4 border-gray-400 pl-4 my-4 italic text-gray-700 dark:text-gray-300" {...props} />
+                )
+              }}
+            >
               {post.content}
             </ReactMarkdown>
           </div>
