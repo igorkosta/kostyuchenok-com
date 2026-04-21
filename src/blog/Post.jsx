@@ -25,7 +25,10 @@ export default function BlogPost() {
               components={{
                 blockquote: ({node, ...props}) => (
                   <blockquote className="border-l-4 border-gray-400 pl-4 my-4 italic text-gray-700 dark:text-gray-300" {...props} />
-                )
+                ),
+                ul: ({node, ...props}) => <ul className="list-disc pl-6 my-3 space-y-1" {...props} />,
+                ol: ({node, ...props}) => <ol className="list-decimal pl-6 my-3 space-y-1" {...props} />,
+                li: ({node, ...props}) => <li className="my-1" {...props} />
               }}
             >
               {post.content}
