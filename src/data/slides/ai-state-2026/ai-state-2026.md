@@ -1,4 +1,4 @@
-# The State of AI: A Critical View
+# Building AI products with AI
 
 Note:
 Welcome everyone. Today I'll give a balanced view of AI - not the hype, not the fear, but what's actually happening.
@@ -52,7 +52,7 @@ https://www.youtube.com/watch?v=Q6nem-F8AG8
 
 ### Allbirds
 
-![All Birds](./allbirds.webp)
+![All Birds](./allbirds.webp?w=1000)
 
 [CNBC](https://www.cnbc.com/2026/04/15/allbirds-bird-stock-shoes-ai.html)
 
@@ -83,7 +83,9 @@ https://www.youtube.com/watch?v=nDL3Ch7Nz8c
 
 ---
 
-![Developers](./senior-juniors.png?w=900)
+### Amplifier
+
+![Developers](./senior-juniors.png?w=1000)
 
 ---
 

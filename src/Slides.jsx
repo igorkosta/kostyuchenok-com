@@ -108,7 +108,17 @@ export default function Slides() {
         transition: 'slide',
         margin: 0,
         padding: 0,
-        center: false
+        center: false,
+        touch: true,
+        overview: false,
+        history: true,
+        width: '100%',
+        height: '100%',
+        responsive: true,
+        controls: true,
+        controlsTutorial: false,
+        controlsLayout: 'bottom-right',
+        controlsBackArrows: 'visible'
       });
 
       deckInstance.current.initialize().then(() => {
@@ -132,6 +142,9 @@ export default function Slides() {
   const openSpeakerView = () => {
     setShowSpeaker(!showSpeaker);
   };
+
+  const goNext = () => deckInstance.current?.right();
+  const goPrev = () => deckInstance.current?.left();
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -175,23 +188,8 @@ export default function Slides() {
           </div>
         </div>
       )}
-      <button
-        onClick={openSpeakerView}
-        style={{
-          position: 'fixed',
-          bottom: 20,
-          right: 20,
-          padding: '10px 20px',
-          background: '#333',
-          color: '#fff',
-          border: 'none',
-          borderRadius: 5,
-          cursor: 'pointer',
-          zIndex: 9999
-        }}
-      >
-        Speaker View (S)
-      </button>
+      
+      
       <div ref={deckRef} className="reveal" style={{ height: '100vh' }}>
       <div className="slides">
         {slides.map((slide, i) => (
@@ -202,14 +200,16 @@ export default function Slides() {
       </div>
       <style>{`
         .reveal { color: #fff; }
-        .reveal .slides {
-          display: flex !important;
-          justify-content: center !important;
-          align-items: center !important;
-        }
         .reveal .slides > section {
           padding: 0 !important;
-          width: 100% !important;
+        }
+        @media (max-width: 768px) {
+          .reveal { font-size: 16px !important; }
+          .reveal h1 { font-size: 1.5em !important; }
+          .reveal h2 { font-size: 1.2em !important; }
+          .reveal h3 { font-size: 1em !important; }
+          .reveal p, .reveal li { font-size: 0.8em !important; }
+          .reveal img { max-width: 100% !important; max-height: 50vh !important; }
         }
       `}</style>
       </div>

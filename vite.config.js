@@ -8,4 +8,8 @@ export default defineConfig({
     react(),
     nodePolyfills(),
   ],
+  server: {
+    host: true,
+    port: 5173
+  }
 })
