@@ -57,26 +57,28 @@ const Image = ({ src, alt, images }) => {
   if (h) height = h + 'px';
   
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+    <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
       {imgSrc && <img src={imgSrc} alt={alt || ''} style={{ width, height, objectFit: 'contain' }} />}
-    </div>
+    </span>
   );
 };
 
 const SlideContent = ({ content, images }) => {
   return (
-    <ReactMarkdown
-      components={{
-        img: ({ src, alt }) => <Image src={src} alt={alt} images={images} />,
-        h1: ({ children }) => <h1 style={{ fontSize: '2.5em', marginBottom: '0.5em' }}>{children}</h1>,
-        h2: ({ children }) => <h2 style={{ fontSize: '1.8em', marginBottom: '0.5em' }}>{children}</h2>,
-        h3: ({ children }) => <h3 style={{ fontSize: '1.3em' }}>{children}</h3>,
-        ul: ({ children }) => <ul style={{ margin: '10px 0' }}>{children}</ul>,
-        li: ({ children }) => <li style={{ margin: '8px 0' }}>{children}</li>
-      }}
-    >
-      {content}
-    </ReactMarkdown>
+    <div className="slide-content">
+      <ReactMarkdown
+        components={{
+          img: ({ src, alt }) => <Image src={src} alt={alt} images={images} />,
+          h1: ({ children }) => <h1 style={{ fontSize: '2.5em', marginBottom: '0.5em' }}>{children}</h1>,
+          h2: ({ children }) => <h2 style={{ fontSize: '1.8em', marginBottom: '0.5em' }}>{children}</h2>,
+          h3: ({ children }) => <h3 style={{ fontSize: '1.3em' }}>{children}</h3>,
+          ul: ({ children }) => <ul style={{ margin: '10px 0' }}>{children}</ul>,
+          li: ({ children }) => <li style={{ margin: '8px 0' }}>{children}</li>
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
   );
 };
 
@@ -193,7 +195,11 @@ export default function Slides() {
       <div ref={deckRef} className="reveal" style={{ height: '100vh' }}>
       <div className="slides">
         {slides.map((slide, i) => (
-          <section key={i}>
+          <section
+            key={i}
+            data-center={i === 0 ? "true" : undefined}
+            className={i === 0 ? "first-slide" : undefined}
+          >
             <SlideContent content={slide.content} images={images} />
           </section>
         ))}
@@ -201,7 +207,18 @@ export default function Slides() {
       <style>{`
         .reveal { color: #fff; }
         .reveal .slides > section {
-          padding: 0 !important;
+          text-align: center;
+        }
+        .reveal .slides > section.first-slide {
+          padding-left: 15% !important;
+          padding-right: 15% !important;
+        }
+        .reveal .slides > section[data-center="true"] {
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+          flex-direction: column !important;
+          height: 100% !important;
         }
         @media (max-width: 768px) {
           .reveal { font-size: 16px !important; }

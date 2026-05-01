@@ -1,7 +1,16 @@
-# Building AI products with AI
+# Building products with AI
 
 Note:
 Welcome everyone. Today I'll give a balanced view of AI - not the hype, not the fear, but what's actually happening.
+
+---
+
+# Q&A
+- How many of you use AI at work?
+- What assistants do you use?
+- Do you trust AI?
+- Do you still write code?
+- Do you feel more productive?
 
 ---
 
@@ -21,9 +30,10 @@ AGI is imminent
 - No coherent definition
 - No path to general intelligence
 - Narrow AI = narrow results
+
 ---
 
-![Software Meltdown](./SoftwareMeltdown.jpeg)
+![Software Meltdown](./SoftwareMeltdown.jpeg?w=800)
 
 ---
 
@@ -48,18 +58,9 @@ Anthropic has been using this model very affectively to sell their products.
 Note:
 RLHF - Reinforcement Learning from Human Feedback
 https://www.youtube.com/watch?v=Q6nem-F8AG8
+
 ---
 
-### Allbirds
-
-![All Birds](./allbirds.webp?w=1000)
-
-[CNBC](https://www.cnbc.com/2026/04/15/allbirds-bird-stock-shoes-ai.html)
-
-Note:
-Allbirds made a surprising announcement Wednesday that it is pivoting from shoes to artificial intelligence.
-The move boosted shares of the miniscule market cap company — it was valued at about $21 million at Tuesday’s close — by 582%. The shares, which were under $3 a day ago, jumped to about $17.
----
 ### Trendslop (HBR)
 >Researchers Asked LLMs for Strategic Advice. They Got “Trendslop” in Return.
 
@@ -71,6 +72,19 @@ Note:
 https://www.youtube.com/watch?v=nDL3Ch7Nz8c
 
 ---
+
+### Allbirds
+
+![All Birds](./allbirds.webp?w=1000)
+
+[CNBC](https://www.cnbc.com/2026/04/15/allbirds-bird-stock-shoes-ai.html)
+
+Note:
+Allbirds made a surprising announcement Wednesday that it is pivoting from shoes to artificial intelligence.
+The move boosted shares of the miniscule market cap company — it was valued at about $21 million at Tuesday’s close — by 582%. The shares, which were under $3 a day ago, jumped to about $17.
+
+---
+
 ### Industries
 
 - Banking & Credit Scoring
@@ -89,71 +103,33 @@ https://www.youtube.com/watch?v=nDL3Ch7Nz8c
 
 ---
 
-### The Good Parts
-
-- An amplifier (Amplifies stupidity as well)
+## Keep the human in the loop
+- Humans have `still` more context
+- Humans have more experience
+- Humans have more attachment
 
 Note:
-Are we in the bubble - yes. Are the AI agents useful - for some tasks - sure.
+Yes, we forget stuff, but we also remember stuff very fast. Humans understand better why certain choices have been made.
+Yes, there are attempts for LLMs to use the history, to memorize certain stuff but still LLM doesn't now how you solved certain problems and why you've things in a certain way.
 
 ---
 
-### Humans
-- Keep the human in the loop
+## Quality code
+- Read the code you AI agent writes
 - Keep the context short
 - Write the critical code yourself (with the help of AI)
 - Focus on the real problems
 
 Note:
+AKA if you don't want your code to totally suck in 2-3 months of spitting garbage.
+
 Models learn from all the shitcode we wrote. You don't find a lot of gems on the internet - just remember stack overflow. 90% of the code is garbage.
 
 If you let your agents to write the whole code without reviewing, you will end up with a enterprise grade complexity in 2 to 3 weeks with 2 people and 10 agents.
 
 Once the bugs will pile up and your customers will start calling - who is going to deal with the issues?
 
----
-## The Hidden Costs
-
-### Compute & Energy
-- Training GPT-4: ~$100M+
-- Environmental impact
-- Only big corps can compete
-
-### Data
-- The internet is finite
-- Quality matters
-- Copyright issues
-
-Note:
-The compute costs are enormous. Only 3 companies can afford to train frontier models. This is not democratized AI.
-
----
-
-## The Centralization Problem
-
-- 3 companies control the future
-- Open-source is closing gaps
-- Hardware moats
-- Infrastructure lock-in
-
----
-
-## What Works
-
-- Code assistance (Copilot, etc.)
-- Image generation (with caveats)
-- Transcription
-- Search augmentation
-
----
-
-## What Doesn't Work
-
-- Long-horizon planning
-- Reliability & accuracy
-- True reasoning
-- Understanding context
-
+If you stop writing the code, you will lose the sense of what good code actually looks like.
 ---
 
 ## The Trust Problem
@@ -162,6 +138,15 @@ The compute costs are enormous. Only 3 companies can afford to train frontier mo
 - No verification built-in
 - Users trust too much
 - "AI slop" everywhere
+
+---
+
+
+## Problems
+
+- Reliability & accuracy
+- True reasoning
+- Understanding context
 
 ---
 
@@ -192,4 +177,3 @@ The compute costs are enormous. Only 3 companies can afford to train frontier mo
 
 ---
 
-## Questions?

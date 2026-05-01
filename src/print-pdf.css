@@ -1,0 +1,21 @@
+/* Print PDF styles for Reveal.js - must have high specificity */
+
+/* Target first slide in print-pdf mode */
+html.print-pdf .reveal .slides section.first-slide,
+html.print-pdf .reveal .slides section[data-center="true"] {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  padding-left: 15% !important;
+  padding-right: 15% !important;
+  text-align: center !important;
+  position: relative !important;
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+/* All slides should have some top padding in print mode */
+html.print-pdf .reveal .slides section {
+  padding-top: 5% !important;
+}
