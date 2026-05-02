@@ -667,6 +667,8 @@ Welcome everyone. Today I'll give a balanced view of AI - not the hype, not the 
 - Do you trust AI?
 - Do you still write code?
 - Do you feel more productive?
+- How many of you think AI is a threat?
+
 
 ---
 
@@ -751,6 +753,8 @@ The move boosted shares of the miniscule market cap company — it was valued at
 - Criminal Justice
 - Government Benefits
 
+Note:
+Industries that safeguard their code.
 ---
 
 ### Amplifier
@@ -758,11 +762,18 @@ The move boosted shares of the miniscule market cap company — it was valued at
 ![Developers](./senior-juniors.png?w=1000)
 
 ---
+## Fast code era
+- Similar to fast fashion
+- All websites look the same
+- No personalization
+- Throwaway code
+- Every year - new \`fashion\`
+---
 
 ## Keep the human in the loop
 - Humans have \`still\` more context
-- Humans have more experience
-- Humans have more attachment
+- Humans have \`still\` more experience
+- Humans have more attachment and always will
 
 Note:
 Yes, we forget stuff, but we also remember stuff very fast. Humans understand better why certain choices have been made.
@@ -777,6 +788,11 @@ Yes, there are attempts for LLMs to use the history, to memorize certain stuff b
 - Focus on the real problems
 
 Note:
+What is a quality code for you? The code that is readable, easy to understand and easy to change?
+If you build your codebase on the premise that it will only be read by a code assistant - then does the readibility even matters?
+
+What happens with the codebase that's been \`vibe-coded\` for 6 months without the human oversight? :)
+
 AKA if you don't want your code to totally suck in 2-3 months of spitting garbage.
 
 Models learn from all the shitcode we wrote. You don't find a lot of gems on the internet - just remember stack overflow. 90% of the code is garbage.
@@ -788,30 +804,12 @@ Once the bugs will pile up and your customers will start calling - who is going 
 If you stop writing the code, you will lose the sense of what good code actually looks like.
 ---
 
-## The Trust Problem
-
-- Hallucinations everywhere
-- No verification built-in
-- Users trust too much
-- "AI slop" everywhere
-
----
-
-
 ## Problems
 
 - Reliability & accuracy
-- True reasoning
+- Hallucinations
+- Non-deterministic
 - Understanding context
-
----
-
-## The Business Reality
-
-- Most AI startups lose money
-- Infrastructure costs are huge
-- Hard to differentiate
-- Competition from big tech
 
 ---
 
@@ -820,8 +818,13 @@ If you stop writing the code, you will lose the sense of what good code actually
 - Tool, not magic
 - Amplifier, not replacement
 - Requires human judgment
-- Still early, still limited
+- Still limited
 
+Note:
+- Tool, not magic although it may feel like one.
+- Great amplifier of your skills
+- Requires human oversight and steering
+-
 ---
 
 ## What Matters
@@ -830,6 +833,16 @@ If you stop writing the code, you will lose the sense of what good code actually
 - Appropriate skepticism
 - Focus on real problems
 - Practical applications
+
+Note:
+---
+
+## The Business Reality
+
+- Most AI startups lose money
+- Infrastructure costs are huge
+- Hard to differentiate
+- Competition from big tech
 
 ---
 
