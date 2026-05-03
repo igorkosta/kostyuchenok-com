@@ -155,6 +155,16 @@ If you stop writing the code, you will lose the sense of what good code actually
 - Non-deterministic
 - Understanding context
 
+Note:
+What are the main problems that you may encounter when using AI-generated code without the human oversight.
+
+1. Context blindness - AI can only see a limited window of your codebase (typically a few thousand lines), so it generates code without understanding downstream dependencies, existing patterns, or system-wide architecture.
+2. Logic & correctness errors - Studies show AI-generated PRs have ~75% more logic/correctness issues than human-only PRs. The code looks syntactically correct but produces wrong results.
+3. Security vulnerabilities - AI-assisted tools led to a ~24% increase in security vulnerabilities in code. AI doesn't inherently understand threat models or secure coding practices.
+4. Error handling gaps - Missing exception handling and edge cases are nearly twice as common in AI-generated code compared to human-written code.
+5. No verification built-in - AI confidently generates code that compiles but is incorrect. There's no self-checking mechanism.
+6. Context ceiling degradation - LLM accuracy drops significantly as context increases. Claude 3.5 Sonnet drops from 29% accuracy at 10K tokens to just 3% at 1M tokens.
+7. Invisible dependencies - 73% of AI completions compile locally but violate patterns elsewhere in the codebase.
 ---
 
 ## A Pragmatic View
@@ -179,14 +189,5 @@ Note:
 - Practical applications
 
 Note:
----
-
-## The Business Reality
-
-- Most AI startups lose money
-- Infrastructure costs are huge
-- Hard to differentiate
-- Competition from big tech
-
 ---
 
