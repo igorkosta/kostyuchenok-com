@@ -1,53 +1,54 @@
 import { Link } from "react-router-dom";
 import { posts } from "./index";
-import heroImage from "../assets/blog-hero.jpg";
+import { getReadingTime, formatDate } from "./utils";
 import Layout from "../Layout";
 
 export default function BlogList() {
+  const featured = posts[0];
+  const rest = posts.slice(1);
+
   return (
     <Layout>
-      <div className="flex justify-center px-4">
-        <div className="w-[80%] max-w-4xl py-12">
-          <div className="w-full mb-10">
-            <img
-              src={heroImage}
-              alt="Blog"
-              className="w-full h-48 md:h-64 object-cover rounded-2xl"
-            />
-          </div>
+      <div className="blog-list-page">
+        <div className="blog-list-header">
+          <h1>Blog</h1>
+          <p>Thoughts on FinTech, AI, and building resilient systems.</p>
+        </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
-            Blog
-          </h1>
+        {featured && (
+          <Link
+            to={`/blog/${featured.slug}`}
+            className="featured-post"
+          >
+            <div className="featured-content">
+              <span className="featured-label">Featured</span>
+              <h2>{featured.title}</h2>
+              <p className="featured-excerpt">{featured.description}</p>
+              <div className="featured-meta">
+                <time>{formatDate(featured.date)}</time>
+                <span>{getReadingTime(featured.content)}</span>
+              </div>
+            </div>
+          </Link>
+        )}
 
-          <div className="flex flex-col gap-6">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                to={`/blog/${post.slug}`}
-                className="
-                  block
-                  py-5
-                  px-6
-                  rounded-xl
-                  border border-gray-200
-                  hover:bg-gray-50
-                  transition
-                  active:scale-[0.98]
-                "
-              >
-                <div className="text-lg md:text-xl font-semibold text-gray-900">
-                  {post.title}
-                </div>
-                <div className="text-ms">
-                  {post.description}
-                </div>
-                <div className="text-sm text-gray-500 mt-1">
-                  {post.date.toISOString().slice(0, 10)}
-                </div>
-              </Link>
-            ))}
-          </div>
+        <div className="posts-grid">
+          {rest.map((post) => (
+            <Link
+              key={post.slug}
+              to={`/blog/${post.slug}`}
+              className="post-card"
+            >
+              <div className="post-card-content">
+                <h3>{post.title}</h3>
+                <p>{post.description}</p>
+              </div>
+              <div className="post-card-meta">
+                <time>{formatDate(post.date)}</time>
+                <span>{getReadingTime(post.content)}</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </Layout>

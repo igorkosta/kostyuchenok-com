@@ -4,10 +4,6 @@ date: 2026-03-01
 description: The AI Coding Revolution Has a Hidden Cost
 ---
 
-# Future of Coding
-
----
-
 ## Executive Summary
 
 AI-assisted coding has fundamentally transformed software development in 2025-2026, but the data reveals a more complicated picture than the productivity narratives suggest:

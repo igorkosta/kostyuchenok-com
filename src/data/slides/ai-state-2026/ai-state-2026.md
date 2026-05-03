@@ -110,7 +110,7 @@ Industries that safeguard their code.
 - Similar to fast fashion
 - All websites look the same
 - No personalization
-- Throwaway code
+- Throw away code
 - Every year - new `fashion`
 ---
 
