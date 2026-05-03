@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const slides = [
   {
     slug: 'ai-state-2026',
-    title: 'Building AI products with AI',
+    title: 'Building products with AI',
     description: 'A balanced look at AI in 2026 - beyond the hype and fear.',
     date: '2026'
   }
