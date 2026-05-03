@@ -789,6 +789,16 @@ If you stop writing the code, you will lose the sense of what good code actually
 - Non-deterministic
 - Understanding context
 
+Note:
+What are the main problems that you may encounter when using AI-generated code without the human oversight.
+
+1. Context blindness - AI can only see a limited window of your codebase (typically a few thousand lines), so it generates code without understanding downstream dependencies, existing patterns, or system-wide architecture.
+2. Logic & correctness errors - Studies show AI-generated PRs have ~75% more logic/correctness issues than human-only PRs. The code looks syntactically correct but produces wrong results.
+3. Security vulnerabilities - AI-assisted tools led to a ~24% increase in security vulnerabilities in code. AI doesn't inherently understand threat models or secure coding practices.
+4. Error handling gaps - Missing exception handling and edge cases are nearly twice as common in AI-generated code compared to human-written code.
+5. No verification built-in - AI confidently generates code that compiles but is incorrect. There's no self-checking mechanism.
+6. Context ceiling degradation - LLM accuracy drops significantly as context increases. Claude 3.5 Sonnet drops from 29% accuracy at 10K tokens to just 3% at 1M tokens.
+7. Invisible dependencies - 73% of AI completions compile locally but violate patterns elsewhere in the codebase.
 ---
 
 ## A Pragmatic View
@@ -813,15 +823,6 @@ Note:
 - Practical applications
 
 Note:
----
-
-## The Business Reality
-
-- Most AI startups lose money
-- Infrastructure costs are huge
-- Hard to differentiate
-- Competition from big tech
-
 ---
 
 `,importImages=Object.assign({"./data/slides/ai-state-2026/GarryTan.png":()=>__vitePreload(()=>import("./GarryTan-Dr74h9QT.js"),[]),"./data/slides/ai-state-2026/claude-1.png":()=>__vitePreload(()=>import("./claude-1-B_89bMgo.js"),[]),"./data/slides/ai-state-2026/senior-juniors.png":()=>__vitePreload(()=>import("./senior-juniors-CEsikYuI.js"),[]),"./data/slides/ai-state-2026/trendslop.png":()=>__vitePreload(()=>import("./trendslop-D6klLKBj.js"),[])})||{},importImagesJpg=Object.assign({"./data/slides/ai-state-2026/SoftwareMeltdown.jpeg":()=>__vitePreload(()=>import("./SoftwareMeltdown-D4_xWo32.js"),[]),"./data/slides/ai-state-2026/claude.jpeg":()=>__vitePreload(()=>import("./claude-DK_bXzEt.js"),[])})||{},importImagesWebp=Object.assign({"./data/slides/ai-state-2026/DarioSam.webp":()=>__vitePreload(()=>import("./DarioSam-BeH8U13w.js"),[]),"./data/slides/ai-state-2026/allbirds.webp":()=>__vitePreload(()=>import("./allbirds-CX0NEmAw.js"),[])})||{},getImagesForKeynote=e=>{const n={},a={...importImages,...importImagesJpg,...importImagesWebp};return Object.entries(a).forEach(([o,s])=>{if(o.includes(`/${e}/`)){const f=o.split("/").pop();n[f]=s}}),n},parseSlides=e=>e.split(/^---$/m).map(n=>{const a=n.split(/^Note:/m),o=a[0].trim(),s=a[1]?a[1].trim():"";return{content:o,notes:s}}).filter(n=>n.content),Image=({src:e,alt:n,images:a})=>{const o=e?.replace("./","").split("?")[0]||"",s=a[o],[f,c]=reactExports.useState(null);if(reactExports.useEffect(()=>{s&&s().then(w=>{c(w.default||w)})},[s]),!s)return jsxRuntimeExports.jsxs("span",{children:["Image not found: ",e]});let h="80%",d="80%";const p=new URLSearchParams(e.split("?")[1]||""),m=p.get("w"),y=p.get("h");return m&&(h=m+"px"),y&&(d=y+"px"),jsxRuntimeExports.jsx("span",{style:{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"},children:f&&jsxRuntimeExports.jsx("img",{src:f,alt:n||"",style:{width:h,height:d,objectFit:"contain"}})})},SlideContent=({content:e,images:n})=>jsxRuntimeExports.jsx("div",{className:"slide-content",children:jsxRuntimeExports.jsx(Markdown,{components:{img:({src:a,alt:o})=>jsxRuntimeExports.jsx(Image,{src:a,alt:o,images:n}),h1:({children:a})=>jsxRuntimeExports.jsx("h1",{style:{fontSize:"2.5em",marginBottom:"0.5em"},children:a}),h2:({children:a})=>jsxRuntimeExports.jsx("h2",{style:{fontSize:"1.8em",marginBottom:"0.5em"},children:a}),h3:({children:a})=>jsxRuntimeExports.jsx("h3",{style:{fontSize:"1.3em"},children:a}),ul:({children:a})=>jsxRuntimeExports.jsx("ul",{style:{margin:"10px 0"},children:a}),li:({children:a})=>jsxRuntimeExports.jsx("li",{style:{margin:"8px 0"},children:a})},children:e})}),slideModules=Object.assign({"./data/slides/ai-state-2026/ai-state-2026.md":__vite_glob_3_0});function Slides(){const{slug:e}=useParams(),n=reactExports.useRef(null),a=reactExports.useRef(null),o=reactExports.useRef(!1),[s,f]=reactExports.useState({});reactExports.useEffect(()=>{const w=getImagesForKeynote(e);f(w)},[e]);const c=slideModules[`./data/slides/${e}/${e}.md`]||"",h=parseSlides(c);reactExports.useEffect(()=>{h.length>0&&window.Reveal&&!o.current&&(o.current=!0,a.current=new window.Reveal(n.current,{hash:!0,embedded:!1,keyboard:!0,transition:"slide",margin:0,padding:0,center:!1,touch:!0,overview:!1,history:!0,width:"100%",height:"100%",responsive:!0,controls:!0,controlsTutorial:!1,controlsLayout:"bottom-right",controlsBackArrows:"visible"}),a.current.initialize().then(()=>{a.current.layout(),a.current.sync()}))},[h.length]);const[d,p]=reactExports.useState(0),[m,y]=reactExports.useState(!1);return reactExports.useEffect(()=>{a.current&&a.current.on("slidechanged",w=>{p(w.indexh)})},[]),reactExports.useEffect(()=>{const w=T=>{(T.key==="s"||T.key==="S")&&y(C=>!C)};return window.addEventListener("keydown",w),()=>window.removeEventListener("keydown",w)},[]),reactExports.useEffect(()=>{m&&a.current&&a.current.layout()},[m,h.length]),h.length===0?jsxRuntimeExports.jsxs("div",{style:{padding:50,color:"#fff"},children:["Slides not found: ",e]}):jsxRuntimeExports.jsxs("div",{children:[m&&jsxRuntimeExports.jsxs("div",{style:{position:"fixed",bottom:0,left:0,right:0,height:"200px",background:"#1a1a1a",color:"#fff",padding:"20px",zIndex:9998,overflow:"auto",borderTop:"2px solid #333"},children:[jsxRuntimeExports.jsx("div",{style:{fontSize:"14px",color:"#888",marginBottom:"10px"},children:"SPEAKER NOTES"}),jsxRuntimeExports.jsx("div",{style:{fontSize:"16px",whiteSpace:"pre-wrap"},children:h[d]?.notes||"No notes for this slide"})]}),jsxRuntimeExports.jsxs("div",{ref:n,className:"reveal",style:{height:"100vh"},children:[jsxRuntimeExports.jsx("div",{className:"slides",children:h.map((w,T)=>jsxRuntimeExports.jsx("section",{"data-center":T===0?"true":void 0,className:T===0?"first-slide":void 0,children:jsxRuntimeExports.jsx(SlideContent,{content:w.content,images:s})},T))}),jsxRuntimeExports.jsx("style",{children:`
