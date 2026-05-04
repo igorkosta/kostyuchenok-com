@@ -22,96 +22,146 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 2rem;
+  padding: 0 2rem;
   position: sticky;
   top: 0;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 100;
-  border-bottom: 2px solid #000;
-  height: 50px;
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-}
-
-header nav a {
-  text-decoration: none;
-  color: #171717;
-  text-transform: uppercase;
-  margin-right: 15px;
-}
-
-header nav a:hover {
-  color: #878953;
-  border-color: currentColor;
-}
-
-/* Desktop nav */
-.nav-links {
-  justify-content: flex-end;
-  align-items: center;
-  display: flex;
-}
-.nav-links a {
-  text-decoration: none;
-  color: #111;
-  font-weight: 700;
-  transition: color 0.3s ease;
-  cursor: pointer;
-}
-
-.nav-links a:hover {
-  color: #878953;
-}
-
-/* Hamburger button */
-.menu-toggle {
-  display: none;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #111;
-}
-
-/* Mobile styles */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background: #fff;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0.5rem 2rem;
-    border: 1px solid #eee;
-    border-radius: 0 0 8px 8px;
-    display: none;
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  height: 56px;
 }
 
 .nav-container {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-width: 100%;
-  height: 50px;
-  padding-left: 40px;
-  padding-right: 40px;
-  display: flex
+  height: 56px;
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
 }
 
 .logo {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: #111;
+  transition: color 0.2s ease;
+}
+
+.logo:hover {
+  color: #878953;
+}
+
+/* Desktop nav */
+.nav-links {
+  position: fixed;
+  top: 12px;
+  right: 2rem;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  gap: 0.25rem;
+  z-index: 9999;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
   font-size: 0.8rem;
-  float: left;
+  letter-spacing: 0.02em;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  transition: color 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: #111;
+  background: rgba(135, 137, 83, 0.08);
+}
+
+.nav-links a.active {
+  color: #878953;
+  background: rgba(135, 137, 83, 0.1);
+}
+
+/* Hamburger button */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #111;
+  gap: 5px;
+  padding: 0;
+}
+
+.menu-toggle-line {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: #111;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-toggle-line.line-open:nth-child(1) {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.menu-toggle-line.line-open:nth-child(2) {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  header {
+    padding: 0 1rem;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    display: none;
+    min-width: 160px;
+    z-index: 9999;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
 }
 
 a {
@@ -507,16 +557,6 @@ footer a:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  header nav a {
-    margin-left: 0;
-    margin-right: 1.5rem;
-  }
-
   .talk {
     flex-direction: column;
     align-items: flex-start;
