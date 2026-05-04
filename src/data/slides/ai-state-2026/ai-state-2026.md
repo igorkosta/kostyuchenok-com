@@ -37,14 +37,18 @@ AGI is imminent
 
 ![Software Meltdown](./SoftwareMeltdown.jpeg?w=800)
 
+Note:
+Do you also think that these products became less valuable?
+
+I'm just trying to find out who I will be fighting elbow on elbow against Skynet.
+
+Who benefits from it and why is it happening?
 ---
-
-
-![Dario Sam](./DarioSam.webp)
+![Dario Sam](./DarioSam.webp?w=1100)
 
 Note:
-This is a very-well known fear cycle pattern that's been used in marketing for a very long time. You present people with an upcoming problem that may destroy their way of life and you give them the `solution`. Additionally to that current AI models are very good of hooking directly into you dopamine cycle.
-Anthropic has been using this model very affectively to sell their products.
+This is a very-well known fear mongering pattern that's been used in marketing for a very long time. You present people with an upcoming problem that may destroy their way of life and you give them the `solution`. Additionally to that current AI models are very good of hooking directly into you dopamine cycle.
+Anthropic has been using this model very effectively to sell their products.
 
 ---
 
@@ -55,11 +59,12 @@ Anthropic has been using this model very affectively to sell their products.
 ---
 
 ### God Complex (RLHF)
-![Garry Tan](./GarryTan.png)
+![Garry Tan](./GarryTan.png?w=1000)
 
 Note:
 RLHF - Reinforcement Learning from Human Feedback
 https://www.youtube.com/watch?v=Q6nem-F8AG8
+CEO of Y Combinator (YC), venture capitalist and engineer.
 
 ---
 
@@ -186,7 +191,6 @@ Note:
 - Understanding limitations
 - Appropriate skepticism
 - Focus on real problems
-- Practical applications
 
 Note:
 ---
