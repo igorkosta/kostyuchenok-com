@@ -52,12 +52,14 @@ export default function BlogPost() {
     <Layout>
       <article className="blog-post-page">
         <header className="blog-post-header">
-          <h2>{post.title}</h2>
+          <h1>{post.title}</h1>
           <div className="blog-post-meta">
             <time>{formatDate(post.date)}</time>
             <span>{getReadingTime(post.content)}</span>
           </div>
         </header>
+
+        <div className="blog-post-divider"></div>
 
         <div className="blog-post-layout">
           <aside className="blog-toc">
