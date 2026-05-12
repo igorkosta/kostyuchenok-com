@@ -60,19 +60,24 @@ async function deleteFile(path) {
 const LOCATION_FILE = 'src/data/location.json';
 
 async function saveLocation(location) {
-  const data = JSON.stringify({
+  const res = await axios.get(
+    `https://api.github.com/repos/${GITHUB_REPO}/contents/${LOCATION_FILE}`,
+    { headers: await getGitHubHeaders() }
+  );
+  const currentContent = JSON.parse(
+    Buffer.from(res.data.content, 'base64').toString('utf-8')
+  );
+  const sha = res.data.sha;
+
+  const newEntry = {
     latitude: location.latitude,
     longitude: location.longitude,
     updatedAt: new Date().toISOString()
-  }, null, 2);
-  
-  const sha = await getFileSha(LOCATION_FILE);
-  await commitFile(
-    LOCATION_FILE,
-    data,
-    'Update location',
-    sha
-  );
+  };
+  const updatedContent = [newEntry, ...currentContent];
+  const data = JSON.stringify(updatedContent, null, 2);
+
+  await commitFile(LOCATION_FILE, data, 'Update location', sha);
 }
 
 async function downloadTelegramFile(fileId) {

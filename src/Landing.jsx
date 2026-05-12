@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import profilePic from "./assets/vertical-me.png";
-import { scrollToSection } from "./utils/scrollToSection";
 import { books } from "./data/books";
 import locationData from "./data/location.json";
-import { MapPin } from "lucide-react";
-import { motion } from "framer-motion";
+import { MapPin, History } from "lucide-react";
 import Layout from "./Layout";
+import LocationHistory from "./LocationHistory";
 
 export default function Landing() {
-  const navigate = useNavigate();
   const [year, setYear] = useState();
   const [location, setLocation] = useState(null);
+  const [historyOpen, setHistoryOpen] = useState(false);
   const currentYear = () =>  setYear(new Date().getFullYear())
 
   useEffect(() => {
       currentYear();
-      if (locationData.latitude && locationData.longitude) {
-        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${locationData.latitude}&lon=${locationData.longitude}&format=json&accept-language=en`)
+      if (locationData[0]?.latitude && locationData[0]?.longitude) {
+        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${locationData[0].latitude}&lon=${locationData[0].longitude}&format=json&accept-language=en`)
           .then(res => res.json())
           .then(data => {
             const city = data.address.city || data.address.town || data.address.village || data.address.county;
@@ -80,7 +79,23 @@ export default function Landing() {
           <div className="about-me-bio">
             <p>Serial entrepreneur, speaker, and C-Level mentor.</p>
             <p>{year - 2010}+ years of experience in the FinTech industry creating innovative products and services for Banks and FinTechs.</p>
-            <p><motion.span animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} style={{ display: 'inline-flex', marginRight: '6px' }}><MapPin size={24} color="#ef4444" style={{ display: 'inline', verticalAlign: 'middle' }} /></motion.span>Currently in {location || "Europe"}.</p>
+            <p className="flex items-center gap-2 flex-wrap">
+              <motion.span
+                animate={{ y: [0, -4, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                style={{ display: "inline-flex" }}
+              >
+                <MapPin size={24} color="#ef4444" />
+              </motion.span>
+              Currently in {location || "Europe"}.
+              <button
+                onClick={() => setHistoryOpen(true)}
+                className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors bg-transparent px-2 py-1 rounded-md hover:bg-gray-100"
+              >
+                <History size={14} />
+                history
+              </button>
+            </p>
           </div>
         </div>
       </section>
@@ -165,6 +180,11 @@ export default function Landing() {
           <a href="mailto:igor@kostyuchenok.com">igor@kostyuchenok.com</a>
         </h1>
       </section>
+      <LocationHistory
+        locations={locationData}
+        isOpen={historyOpen}
+        onClose={() => setHistoryOpen(false)}
+      />
     </Layout>
   );
 }
