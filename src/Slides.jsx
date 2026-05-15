@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import { Sun, Moon } from 'lucide-react';
 
 const importImages = import.meta.glob('./data/slides/*/*.png') || {};
 const importImagesJpg = import.meta.glob('./data/slides/*/*.jpeg') || {};
@@ -8,16 +9,16 @@ const importImagesWebp = import.meta.glob('./data/slides/*/*.webp') || {};
 
 const getImagesForKeynote = (slug) => {
   const images = {};
-  
+
   const allImages = { ...importImages, ...importImagesJpg, ...importImagesWebp };
-  
+
   Object.entries(allImages).forEach(([path, loader]) => {
     if (path.includes(`/${slug}/`)) {
       const filename = path.split('/').pop();
       images[filename] = loader;
     }
   });
-  
+
   return images;
 };
 
@@ -33,9 +34,9 @@ const parseSlides = (md) => {
 const Image = ({ src, alt, images }) => {
   const filename = src?.replace('./', '').split('?')[0] || '';
   const imgLoader = images[filename];
-  
+
   const [imgSrc, setImgSrc] = useState(null);
-  
+
   useEffect(() => {
     if (imgLoader) {
       imgLoader().then((mod) => {
@@ -43,19 +44,19 @@ const Image = ({ src, alt, images }) => {
       });
     }
   }, [imgLoader]);
-  
+
   if (!imgLoader) return <span>Image not found: {src}</span>;
-  
+
   let width = '80%';
   let height = '80%';
-  
+
   const urlParams = new URLSearchParams(src.split('?')[1] || '');
   const w = urlParams.get('w');
   const h = urlParams.get('h');
-  
+
   if (w) width = w + 'px';
   if (h) height = h + 'px';
-  
+
   return (
     <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
       {imgSrc && <img src={imgSrc} alt={alt || ''} style={{ width, height, objectFit: 'contain' }} />}
@@ -90,12 +91,13 @@ export default function Slides() {
   const deckInstance = useRef(null);
   const ready = useRef(false);
   const [images, setImages] = useState({});
-  
+  const [darkMode, setDarkMode] = useState(true);
+
   useEffect(() => {
     const imgs = getImagesForKeynote(slug);
     setImages(imgs);
   }, [slug]);
-  
+
   const rawContent = slideModules[`./data/slides/${slug}/${slug}.md`] || '';
   const slides = parseSlides(rawContent);
 
@@ -159,6 +161,23 @@ export default function Slides() {
   }, []);
 
   useEffect(() => {
+    const link = document.getElementById('reveal-theme');
+    if (link) {
+      link.href = `https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/${darkMode ? 'black' : 'white'}.css`;
+      if (deckInstance.current) {
+        setTimeout(() => deckInstance.current.layout(), 200);
+      }
+    }
+  }, [darkMode]);
+
+  useEffect(() => {
+    return () => {
+      const link = document.getElementById('reveal-theme');
+      if (link) link.href = 'https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css';
+    };
+  }, []);
+
+  useEffect(() => {
     if (showSpeaker && deckInstance.current) {
       deckInstance.current.layout();
     }
@@ -190,8 +209,24 @@ export default function Slides() {
           </div>
         </div>
       )}
-      
-      
+
+      <span
+        onClick={() => setDarkMode(!darkMode)}
+        style={{
+          position: 'fixed',
+          bottom: '16px',
+          left: '16px',
+          zIndex: 1000,
+          cursor: 'pointer',
+          color: darkMode ? '#ccc' : '#555',
+          display: 'flex',
+          alignItems: 'center',
+          fontSize: '13px',
+        }}
+      >
+        {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+      </span>
+
       <div ref={deckRef} className="reveal" style={{ height: '100vh' }}>
       <div className="slides">
         {slides.map((slide, i) => (
@@ -205,7 +240,7 @@ export default function Slides() {
         ))}
       </div>
       <style>{`
-        .reveal { color: #fff; }
+        .reveal { color: ${darkMode ? '#fff' : '#222'}; }
         .reveal .slides > section {
           text-align: center;
         }
