@@ -99,6 +99,7 @@ function generateId() {
 }
 
 export default async function handler(req, res) {
+  try {
   const urlParts = req.url.split('/');
   const idParam = urlParts[urlParts.length - 1];
 
@@ -282,4 +283,17 @@ export default async function handler(req, res) {
   );
 
   res.status(200).json({ ok: true });
+  } catch (e) {
+    console.error('Unhandled error:', e);
+    const chatId = req.body?.message?.chat?.id;
+    if (chatId && process.env.TELEGRAM_BOT_TOKEN) {
+      try {
+        await axios.post(
+          `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+          { chat_id: chatId, text: `❌ Internal error: ${e.message}` }
+        );
+      } catch (_) {}
+    }
+    res.status(500).json({ error: e.message });
+  }
 }
