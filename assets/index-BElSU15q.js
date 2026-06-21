@@ -134,7 +134,7 @@ The junior engineer equilibrium is not a failure of AI technology. It is a recog
 > This article synthesizes findings from multiple peer-reviewed studies and industry analyses conducted between 2024 and 2026, including research from Microsoft Research, MIT Sloan, IBM Research, CodeRabbit, Sankhe et al., Liu et al., and others. All statistics and findings are drawn directly from published empirical work.
 `,__vite_glob_0_1=`---
 title: "Modern Bank CTO"
-date: 2026-04-21
+date: 2026-06-21
 description: Most bank CTOs haven't built anything in years. That's a problem.
 ---
 
