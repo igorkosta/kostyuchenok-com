@@ -1,6 +1,6 @@
 ---
 title: "Modern Bank CTO"
-date: 2026-04-21
+date: 2026-06-21
 description: Most bank CTOs haven't built anything in years. That's a problem.
 ---
 
