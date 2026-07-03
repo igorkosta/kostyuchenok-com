@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import profilePic from "./assets/vertical-me.png";
+import profilePic from "./assets/me.png";
 import { books } from "./data/books";
 import locationData from "./data/location.json";
 import { MapPin, History } from "lucide-react";
@@ -60,13 +59,6 @@ export default function Landing() {
       videoId: "C8_3QDyIr6o",
       href: "//www.youtube.com/embed/C8_3QDyIr6o"
     }
-  ];
-
-  const socialLinks = [
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/igorkostyuchenok/" },
-    { name: "Finextra", href: "https://www.finextra.com/bloggers/165855" },
-    { name: "Newsletter", href: "https://newsletter.kostyuchenok.com" },
-    { name: "Telegram", href: "https://t.me/kostyuchenok" },
   ];
 
   return (
