@@ -62,6 +62,13 @@ export default function Landing() {
     }
   ];
 
+  const socialLinks = [
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/igorkostyuchenok/" },
+    { name: "Finextra", href: "https://www.finextra.com/bloggers/165855" },
+    { name: "Newsletter", href: "https://newsletter.kostyuchenok.com" },
+    { name: "Telegram", href: "https://t.me/kostyuchenok" },
+  ];
+
   return (
     <Layout>
       <section id="about-me">
