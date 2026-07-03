@@ -1,0 +1,15 @@
+# kostyuchenok.com
+
+> Thoughts on FinTech, AI, and building resilient systems by Igor Kostyuchenok.
+
+## Blog Posts
+
+- [Your AI Strategy Can't Be a Vendor RFP](https://kostyuchenok.com/blog/04-ai-strategy-not-an-rfp): AI is a capability you build, not a product you procure. Banks that refuse to become technology companies will be commoditized.
+- [AI Code Quality: The Junior Engineer Equilibrium](https://kostyuchenok.com/blog/ai-code-quality-junior-engineer-equilibrium): More code of lower quality than you might think
+- [Modern Bank CTO](https://kostyuchenok.com/blog/bank-cto): Most bank CTOs haven't built anything in years. That's a problem.
+- [Banks Have to Compete With AI Hyperscalers Now](https://kostyuchenok.com/blog/banks-ai-hyperscalers): Banks have a real competition now
+- [Only Ecosystems Will Survive](https://kostyuchenok.com/blog/ecosystems-will-survive): The world of banking is at the verge of big changes that most incumbents are desperately trying to ignore.
+- [Future of Coding](https://kostyuchenok.com/blog/future-of-coding): The AI Coding Revolution Has a Hidden Cost
+- [Incumbents’ Trap](https://kostyuchenok.com/blog/incumbents-trap): Despite the recent advancements of neobanks, incumbents are still the driving banking force of the financial world. Let’s take a look at some numbers — and to make it more “dramatic,” we’ll focus on the UK.
+- [Oman: Open Banking Outlook](https://kostyuchenok.com/blog/oman-open-banking): Oman's banking sector has shown consistent growth over the last decade, with total assets almost doubling from RO 25.8 billion in 2015 to a projected RO 47.8 billion by the end of 2025.
+- [The White-Label Paradox](https://kostyuchenok.com/blog/white-label-banking): Why Banking Infrastructure Is Both the Opportunity and the Trap
