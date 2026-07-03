@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import profilePic from "./assets/me.png";
 import { books } from "./data/books";
 import locationData from "./data/location.json";
@@ -79,23 +78,6 @@ export default function Landing() {
           <div className="about-me-bio">
             <p>Serial entrepreneur, speaker, and C-Level mentor.</p>
             <p>{year - 2010}+ years of experience in the FinTech industry creating innovative products and services for Banks and FinTechs.</p>
-            <p className="flex items-center gap-2 flex-wrap">
-              <motion.span
-                animate={{ y: [0, -4, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                style={{ display: "inline-flex" }}
-              >
-                <MapPin size={24} color="#ef4444" />
-              </motion.span>
-              Currently in {location || "Europe"}.
-              <button
-                onClick={() => setHistoryOpen(true)}
-                className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors bg-transparent px-2 py-1 rounded-md hover:bg-gray-100"
-              >
-                <History size={14} />
-                history
-              </button>
-            </p>
           </div>
         </div>
       </section>
