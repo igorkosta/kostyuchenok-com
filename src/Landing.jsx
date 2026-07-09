@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import profilePic from "./assets/me.png";
+import profilePic from "./assets/me.jpg";
 import { books } from "./data/books";
 import locationData from "./data/location.json";
 import { MapPin, History } from "lucide-react";
