@@ -6,6 +6,7 @@
 
 - [Your AI Strategy Can't Be a Vendor RFP](https://kostyuchenok.com/blog/04-ai-strategy-not-an-rfp): AI is a capability you build, not a product you procure. Banks that refuse to become technology companies will be commoditized.
 - [Your CTO Is the Reason Your Bank Is Falling Behind](https://kostyuchenok.com/blog/05-your-cto-is-falling-behind): Most bank CTOs are too slow, too indecisive, and too far from engineering to lead through AI-driven change.
+- [Enterprise Architecture Is Not a PowerPoint Exercise](https://kostyuchenok.com/blog/10-enterprise-architecture): Architecture created in an ivory tower is fiction. Real enterprise architecture is built with engineers, validated against production, and justified by business value.
 - [AI Code Quality: The Junior Engineer Equilibrium](https://kostyuchenok.com/blog/ai-code-quality-junior-engineer-equilibrium): More code of lower quality than you might think
 - [Modern Bank CTO](https://kostyuchenok.com/blog/bank-cto): Most bank CTOs haven't built anything in years. That's a problem.
 - [Banks Have to Compete With AI Hyperscalers Now](https://kostyuchenok.com/blog/banks-ai-hyperscalers): Banks have a real competition now
