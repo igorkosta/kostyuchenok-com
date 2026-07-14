@@ -62,7 +62,7 @@ The banks that will survive will put technology leaders in place who understand 
 The rest will study the problem until it is too late.
 `,__vite_glob_0_2=`---
 title: "Enterprise Architecture Is Not a PowerPoint Exercise"
-date: 2026-07-01
+date: 2026-07-11
 description: "Architecture created in an ivory tower is fiction. Real enterprise architecture is built with engineers, validated against production, and justified by business value."
 ---
 
