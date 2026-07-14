@@ -4,8 +4,6 @@ date: 2026-07-11
 description: "Architecture created in an ivory tower is fiction. Real enterprise architecture is built with engineers, validated against production, and justified by business value."
 ---
 
-# Enterprise Architecture Is Not a PowerPoint Exercise
-
 Every large bank has an enterprise architecture team. Most of them produce diagrams that bear no resemblance to what actually runs in production.
 
 This is not an accident. It is the result of architecture being treated as a governance function rather than an engineering discipline. When architects sit in a separate organization, review designs in PowerPoint, and hand them off for implementation, the result is architecture that looks clean on paper and fails on contact with reality.
