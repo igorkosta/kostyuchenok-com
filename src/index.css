@@ -1086,6 +1086,53 @@ footer a:hover {
   margin: 1.5rem 0;
 }
 
+.blog-post-content table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.75rem 0;
+  font-size: 0.925rem;
+  line-height: 1.5;
+  -webkit-overflow-scrolling: touch;
+}
+
+.blog-post-content th,
+.blog-post-content td {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.blog-post-content th {
+  font-weight: 600;
+  color: #111;
+  background: #f8f8f8;
+  border-bottom: 2px solid #000;
+  border-top: 2px solid #000;
+  white-space: nowrap;
+}
+
+.blog-post-content td:first-child,
+.blog-post-content th:first-child {
+  padding-left: 0.75rem;
+}
+
+.blog-post-content td:last-child,
+.blog-post-content th:last-child {
+  padding-right: 0.75rem;
+}
+
+.blog-post-content tbody tr:nth-child(even) {
+  background: #fbfbfb;
+}
+
+.blog-post-content tbody tr:hover {
+  background: #f4f4ee;
+}
+
 /* Blog Post Divider */
 .blog-post-divider {
   max-width: 960px;
