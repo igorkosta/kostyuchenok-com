@@ -25,8 +25,8 @@ export default function Nav({ children }) {
         <Link to="/store" className={path === '/store' ? 'active' : ''}>Store</Link>
         <Link to="/slides" className={path.startsWith('/slides') ? 'active' : ''}>Slides</Link>
         <Link to="/blog" className={path.startsWith('/blog') ? 'active' : ''}>Blog</Link>
-        <Link to="/shorts" className={path === '/shorts' ? 'active' : ''}>Shorts</Link>
         <a href="https://newsletter.kostyuchenok.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
+        <a href="https://calendly.com/igor-kostyuchenok" target="_blank" rel="noopener noreferrer" className="nav-cta">Book an intro call</a>
       </nav>
 
       {children}
