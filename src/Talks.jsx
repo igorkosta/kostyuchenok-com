@@ -50,9 +50,11 @@ export default function Talks() {
 
   useEffect(() => {
     if (!videos.length) return;
-    trackRef.current
-      ?.querySelector(".carousel-card.active")
-      ?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    const track = trackRef.current;
+    const active = track?.querySelector(".carousel-card.active");
+    if (!track || !active) return;
+    const left = active.offsetLeft - track.clientWidth / 2 + active.clientWidth / 2;
+    track.scrollTo({ left, behavior: "smooth" });
   }, [activeIndex, videos.length]);
 
   const goPrev = () => setActiveIndex((i) => (i - 1 + videos.length) % videos.length);
