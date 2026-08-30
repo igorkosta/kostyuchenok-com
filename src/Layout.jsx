@@ -22,7 +22,7 @@ export default function Nav({ children }) {
       </header>
 
       <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-        <Link to="/store" className={path === '/store' ? 'active' : ''}>Store</Link>
+        <Link to="/store" className={path === '/store' ? 'active' : ''}>Bookstore</Link>
         <Link to="/slides" className={path.startsWith('/slides') ? 'active' : ''}>Slides</Link>
         <Link to="/blog" className={path.startsWith('/blog') ? 'active' : ''}>Blog</Link>
         <a href="https://newsletter.kostyuchenok.com" target="_blank" rel="noopener noreferrer">Newsletter</a>

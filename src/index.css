@@ -254,6 +254,130 @@ a:hover {
   border:0;
 }
 
+/* Talks playlist embed */
+.videoseries-embed {
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9;
+  margin: 1.5rem auto 0;
+}
+
+.videoseries-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+}
+
+/* Talks carousel */
+.talks-carousel {
+  margin: 1.5rem 0 0;
+}
+
+.talks-player {
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.talks-player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.talks-carousel-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-arrow {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.carousel-arrow:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  opacity: 1;
+}
+
+.carousel-track {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding-bottom: 0.5rem;
+}
+
+.carousel-card {
+  flex-shrink: 0;
+  width: 200px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.carousel-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-card:hover {
+  border-color: #878953;
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+.carousel-card.active {
+  border-color: #878953;
+  box-shadow: 0 0 0 2px #878953;
+}
+
+.carousel-card-title {
+  display: block;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #111;
+}
+
+@media (max-width: 768px) {
+  .carousel-card {
+    width: 160px;
+  }
+
+  .talks-carousel-bar {
+    gap: 0.5rem;
+  }
+}
+
 /* Sections */
 section {
   width: 90%;
@@ -822,6 +946,7 @@ footer a:hover {
 .store-header {
   text-align: center;
   margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 
 .store-header h1 {
