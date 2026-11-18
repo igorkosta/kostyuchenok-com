@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import bakedVideos from "./data/videos.json";
 
 const PLAYLIST_FEED =
@@ -35,6 +35,35 @@ function splitTalk(title) {
 
 export default function Talks() {
   const [videos, setVideos] = useState(bakedVideos);
+  const [activeVideo, setActiveVideo] = useState(null);
+  const closeRef = useRef(null);
+  const lastTrigger = useRef(null);
+
+  useEffect(() => {
+    if (!activeVideo) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setActiveVideo(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+    closeRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+      lastTrigger.current?.focus();
+    };
+  }, [activeVideo]);
+
+  const openVideo = (event, video) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    lastTrigger.current = event.currentTarget;
+    setActiveVideo(video);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -72,47 +101,95 @@ export default function Talks() {
   const featuredMeta = splitTalk(featured.title);
 
   return (
-    <div className="talks-grid">
-      <a
-        className="featured-talk"
-        href={`https://youtu.be/${featured.id}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <div className="thumb">
-          <img src={featured.thumb} alt="" loading="lazy" />
-          <span className="play" aria-hidden="true">
-            <span className="play-ring">
-              <span className="play-tri"></span>
-            </span>
-          </span>
-        </div>
-        <div className="talk-caption">
-          <h3>{featuredMeta.name}</h3>
-          <span>{featuredMeta.venue}</span>
-        </div>
-      </a>
-
-      <div className="talk-rows">
-        {others.slice(0, 4).map((video) => {
-          const meta = splitTalk(video.title);
-          return (
-            <a
-              key={video.id}
-              className="talk-row"
-              href={`https://youtu.be/${video.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="talk-year">{meta.year || "Talk"}</span>
-              <span>
-                <span className="talk-title">{meta.name}</span>
-                <span className="talk-venue">{meta.venue}</span>
+    <>
+      <div className="talks-grid">
+        <a
+          className="featured-talk"
+          href={`https://www.youtube.com/watch?v=${featured.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(event) => openVideo(event, featured)}
+        >
+          <div className="thumb">
+            <img src={featured.thumb} alt="" loading="lazy" />
+            <span className="play" aria-hidden="true">
+              <span className="play-ring">
+                <span className="play-tri"></span>
               </span>
-            </a>
-          );
-        })}
+            </span>
+          </div>
+          <div className="talk-caption">
+            <h3>{featuredMeta.name}</h3>
+            <span>{featuredMeta.venue}</span>
+          </div>
+        </a>
+
+        <div className="talk-rows">
+          {others.slice(0, 4).map((video) => {
+            const meta = splitTalk(video.title);
+            return (
+              <a
+                key={video.id}
+                className="talk-row"
+                href={`https://www.youtube.com/watch?v=${video.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(event) => openVideo(event, video)}
+              >
+                <span className="talk-year">{meta.year || "Talk"}</span>
+                <span>
+                  <span className="talk-title">{meta.name}</span>
+                  <span className="talk-venue">{meta.venue}</span>
+                </span>
+              </a>
+            );
+          })}
+        </div>
       </div>
-    </div>
+
+      {activeVideo && (
+        <div
+          className="video-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeVideo.title}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setActiveVideo(null);
+          }}
+        >
+          <div className="video-modal-inner">
+            <div className="video-modal-head">
+              <p>{activeVideo.title}</p>
+              <button
+                ref={closeRef}
+                type="button"
+                className="video-close"
+                onClick={() => setActiveVideo(null)}
+              >
+                Close <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="video-frame">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${activeVideo.id}?autoplay=1&rel=0&playsinline=1`}
+                title={activeVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="video-modal-foot">
+              <span>Playing on kostyuchenok.com</span>
+              <a
+                href={`https://www.youtube.com/watch?v=${activeVideo.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open on YouTube <span aria-hidden="true">&#8599;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
