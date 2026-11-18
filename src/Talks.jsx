@@ -1,8 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import bakedVideos from "./data/videos.json";
+import videoCategories from "./data/video-categories.json";
 
 const PLAYLIST_FEED =
   "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZ-bmETADhY9f_Scgaeu3aZT7bE6iCmSf";
+
+const CATEGORY_LABELS = {
+  talk: "Talk",
+  interview: "Interview",
+  moderated: "Moderated",
+};
+
+const CATEGORY_FILTERS = [
+  { key: "all", label: "All" },
+  { key: "talk", label: "Talks" },
+  { key: "interview", label: "Interviews" },
+  { key: "moderated", label: "Moderated" },
+];
 
 function parsePlaylist(xml) {
   try {
@@ -30,12 +44,14 @@ function splitTalk(title) {
   const name = parts[0];
   const venue = parts.slice(1).join(" · ");
   const year = title.match(/20\d{2}/)?.[0] || "";
-  return { name, venue: venue || "Talk", year };
+  return { name, venue, year };
 }
 
 export default function Talks() {
   const [videos, setVideos] = useState(bakedVideos);
   const [activeVideo, setActiveVideo] = useState(null);
+  const [filter, setFilter] = useState("all");
+  const [selectedId, setSelectedId] = useState(null);
   const closeRef = useRef(null);
   const lastTrigger = useRef(null);
 
@@ -62,6 +78,7 @@ export default function Talks() {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     lastTrigger.current = event.currentTarget;
+    setSelectedId(video.id);
     setActiveVideo(video);
   };
 
@@ -97,55 +114,103 @@ export default function Talks() {
     );
   }
 
-  const [featured, ...others] = videos;
-  const featuredMeta = splitTalk(featured.title);
+  const items = videos.map((video) => {
+    const category = videoCategories[video.id] || "talk";
+    return {
+      ...video,
+      category,
+      categoryLabel: CATEGORY_LABELS[category],
+      meta: splitTalk(video.title),
+    };
+  });
+  const visibleItems =
+    filter === "all" ? items : items.filter((video) => video.category === filter);
+  const featured =
+    visibleItems.find((video) => video.id === selectedId) || visibleItems[0];
 
   return (
     <>
-      <div className="talks-grid">
-        <a
-          className="featured-talk"
-          href={`https://www.youtube.com/watch?v=${featured.id}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(event) => openVideo(event, featured)}
-        >
-          <div className="thumb">
-            <img src={featured.thumb} alt="" loading="lazy" />
-            <span className="play" aria-hidden="true">
-              <span className="play-ring">
-                <span className="play-tri"></span>
-              </span>
-            </span>
-          </div>
-          <div className="talk-caption">
-            <h3>{featuredMeta.name}</h3>
-            <span>{featuredMeta.venue}</span>
-          </div>
-        </a>
-
-        <div className="talk-rows">
-          {others.slice(0, 4).map((video) => {
-            const meta = splitTalk(video.title);
-            return (
-              <a
-                key={video.id}
-                className="talk-row"
-                href={`https://www.youtube.com/watch?v=${video.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(event) => openVideo(event, video)}
-              >
-                <span className="talk-year">{meta.year || "Talk"}</span>
-                <span>
-                  <span className="talk-title">{meta.name}</span>
-                  <span className="talk-venue">{meta.venue}</span>
-                </span>
-              </a>
-            );
-          })}
-        </div>
+      <div className="talk-filters" role="group" aria-label="Filter videos by category">
+        {CATEGORY_FILTERS.map((item) => {
+          const count =
+            item.key === "all"
+              ? items.length
+              : items.filter((video) => video.category === item.key).length;
+          return (
+            <button
+              key={item.key}
+              type="button"
+              className={filter === item.key ? "active" : ""}
+              aria-pressed={filter === item.key}
+              onClick={() => {
+                setFilter(item.key);
+                setSelectedId(null);
+              }}
+            >
+              {item.label}
+              <span className="talk-filter-count">{String(count).padStart(2, "0")}</span>
+            </button>
+          );
+        })}
       </div>
+
+      {featured ? (
+        <div className="talks-grid">
+          <a
+            className="featured-talk"
+            href={`https://www.youtube.com/watch?v=${featured.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(event) => openVideo(event, featured)}
+          >
+            <div className="thumb">
+              <img src={featured.thumb} alt="" loading="lazy" />
+              <span className="play" aria-hidden="true">
+                <span className="play-ring">
+                  <span className="play-tri"></span>
+                </span>
+              </span>
+            </div>
+            <div className="talk-caption">
+              <h3>{featured.meta.name}</h3>
+              <span>
+                <span className="talk-type">{featured.categoryLabel}</span>
+                {featured.meta.venue ? <> &middot; {featured.meta.venue}</> : null}
+              </span>
+            </div>
+          </a>
+
+          <div className="talk-list-wrap">
+            <div className="talk-rows">
+              {visibleItems.map((video) => {
+                const isActive = video.id === featured.id;
+                return (
+                  <a
+                    key={video.id}
+                    className={`talk-row${isActive ? " active" : ""}`}
+                    href={`https://www.youtube.com/watch?v=${video.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-current={isActive ? "true" : undefined}
+                    onClick={(event) => openVideo(event, video)}
+                  >
+                    <span className="talk-year">{video.meta.year || "—"}</span>
+                    <span>
+                      <span className="talk-title">{video.meta.name}</span>
+                      <span className="talk-venue">
+                        <span className="talk-type">{video.categoryLabel}</span>
+                        {video.meta.venue ? <> &middot; {video.meta.venue}</> : null}
+                      </span>
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <p className="talk-empty">No videos in this category yet.</p>
+      )}
 
       {activeVideo && (
         <div

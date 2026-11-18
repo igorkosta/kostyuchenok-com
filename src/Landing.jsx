@@ -84,21 +84,43 @@ export default function Landing() {
             <div className="status-item">
               <p className="status-k">Now</p>
               <p className="status-v">
-                Co-founder at <b>Mbanq</b>
+                <a
+                  className="status-link"
+                  href="https://www.mbanq.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Co-founder at <b>Mbanq</b>
+                </a>
               </p>
             </div>
             <div className="status-item">
               <p className="status-k">Writing</p>
-              <p className="status-v">{latestTitle}</p>
+              <p className="status-v">
+                <Link className="status-link" to={latest ? `/blog/${latest.slug}` : "/blog"}>
+                  {latestTitle}
+                </Link>
+              </p>
             </div>
             <div className="status-item">
               <p className="status-k">Next</p>
-              <p className="status-v">UNCHAIN Festival &middot; Main Stage</p>
+              <p className="status-v">
+                <a
+                  className="status-link"
+                  href="https://unchainfestival.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  UNCHAIN Festival &middot; Main Stage
+                </a>
+              </p>
             </div>
             <div className="status-item">
               <p className="status-k">Advisory</p>
               <p className="status-v">
-                <b>1 slot open</b> &middot; Q1 2027
+                <Link className="status-link" to="/consulting#contact">
+                  <b>1 slot open</b> &middot; Q1 2027
+                </Link>
               </p>
             </div>
           </div>
@@ -165,8 +187,12 @@ export default function Landing() {
         </div>
         <div className="featured featured-sub">
           <span className="featured-k">Spoke at</span>
-          <span className="featured-item">UNCHAIN Festival</span>
-          <span className="featured-item">Baltic Fintech Days</span>
+          <a href="https://unchainfestival.com/" target="_blank" rel="noopener noreferrer">
+            UNCHAIN Festival
+          </a>
+          <a href="https://balticfintechdays.com/" target="_blank" rel="noopener noreferrer">
+            Baltic Fintech Days
+          </a>
           <span className="featured-item">Rocket Conf</span>
           <span className="featured-item">Tech&rsquo;o&rsquo;Space</span>
           <a
@@ -210,10 +236,10 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="section container" id="talks">
+      <section className="section container" id="videos">
         <div className="section-head">
           <p className="label">
-            <b>03</b> Talks
+            <b>03</b> Videos
           </p>
           <a
             className="text-link"

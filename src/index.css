@@ -441,6 +441,18 @@ figure {
   color: var(--muted);
 }
 
+.status-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.status-link:hover {
+  color: var(--signal);
+  border-color: var(--signal);
+}
+
 .status-v {
   margin-top: 5px;
   font-size: 13px;
@@ -680,12 +692,67 @@ figure {
   transform: translate(3px, -3px);
 }
 
-/* ---------- Talks ---------- */
+/* ---------- Videos ---------- */
+
+.talk-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 22px;
+  margin-bottom: clamp(18px, 2.5vw, 28px);
+}
+
+.talk-filters button {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 0 0 4px;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.talk-filters button:hover {
+  color: var(--ink);
+}
+
+.talk-filters button.active {
+  color: var(--signal);
+  border-color: var(--signal);
+}
+
+.talk-filter-count {
+  font-size: 8px;
+  color: var(--muted);
+}
+
+.talk-filters button.active .talk-filter-count {
+  color: var(--signal);
+}
+
+.talk-type {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.talk-empty {
+  padding: 24px 0;
+  font-size: 14px;
+  color: var(--muted);
+}
 
 .talks-grid {
   display: grid;
   grid-template-columns: 7fr 5fr;
   gap: clamp(24px, 3.5vw, 48px);
+  align-items: stretch;
 }
 
 .featured-talk {
@@ -776,9 +843,30 @@ figure {
   white-space: nowrap;
 }
 
+.talk-list-wrap {
+  position: relative;
+  min-height: 0;
+}
+
 .talk-rows {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
   border-top: 1px solid var(--rule-strong);
-  align-self: start;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+
+.talk-rows::-webkit-scrollbar {
+  width: 4px;
+}
+
+.talk-rows::-webkit-scrollbar-thumb {
+  background: var(--rule);
+}
+
+.talk-rows::-webkit-scrollbar-thumb:hover {
+  background: var(--rule-strong);
 }
 
 .talk-row {
@@ -794,6 +882,15 @@ figure {
 
 .talk-row:hover {
   background: rgba(20, 21, 15, 0.035);
+}
+
+.talk-row.active {
+  background: rgba(20, 21, 15, 0.045);
+}
+
+.talk-row.active .talk-title,
+.talk-row.active .talk-year {
+  color: var(--signal);
 }
 
 .talk-year {
@@ -2305,6 +2402,15 @@ figure {
   .talks-grid {
     grid-template-columns: 1fr;
     gap: 34px;
+  }
+
+  .talk-list-wrap {
+    position: static;
+  }
+
+  .talk-rows {
+    position: static;
+    overflow: visible;
   }
   .consult-head {
     grid-template-columns: 1fr;

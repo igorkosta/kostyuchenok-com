@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 const NAV_ITEMS = [
   { label: "Writing", to: "/#writing", hash: "#writing" },
-  { label: "Talks", to: "/#talks", hash: "#talks" },
+  { label: "Videos", to: "/#videos", hash: "#videos" },
   { label: "Books", to: "/#books", hash: "#books" },
   { label: "About", to: "/#now", hash: "#now" },
 ];
@@ -97,14 +97,14 @@ export default function Layout({ children }) {
             igor@kostyuchenok.com
           </a>
           <p className="footer-lede">
-            For advisory, talks, press, or a good argument about core banking.
+            For advisory, press, or a good argument about core banking.
           </p>
 
           <div className="footer-grid">
             <div className="footer-col">
               <h4>Explore</h4>
               <Link to="/blog">Writing</Link>
-              <Link to="/#talks">Talks</Link>
+              <Link to="/#videos">Videos</Link>
               <Link to="/store">Books</Link>
               <Link to="/slides">Slides</Link>
               <Link to="/consulting">Consulting</Link>
