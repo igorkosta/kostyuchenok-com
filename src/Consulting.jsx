@@ -342,12 +342,12 @@ export default function Consulting() {
 
         <div className="proof">
           <div className="quote-slot">
-            <p className="q-label">What clients say</p>
+            <p className="q-label">How I work</p>
             <p>
-              &ldquo;Two or three short testimonials go here &mdash; name, role, company, and
-              one sentence on the decision they were facing.&rdquo;
+              &ldquo;Every engagement ends with a decision your team can defend without
+              me.&rdquo;
             </p>
-            <p className="q-note">Placeholder &mdash; to be supplied before launch.</p>
+            <p className="q-note">Igor Kostyuchenok</p>
           </div>
 
           <div className="track">

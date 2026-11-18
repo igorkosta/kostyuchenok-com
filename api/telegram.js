@@ -202,11 +202,11 @@ export default async function handler(req, res) {
       for (const file of filesToDelete) {
         try {
           await deleteFile(`${IMAGES_PATH}/${file.name}`);
-        } catch (e) {
+        } catch {
           // Ignore if image doesn't exist
         }
       }
-    } catch (e) {
+    } catch {
       // Ignore if images directory doesn't exist
     }
     
@@ -278,7 +278,7 @@ export default async function handler(req, res) {
     `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
     {
       chat_id: chatId,
-      text: `✅ Published to https://kostyuchenok.com/shorts\n\nID: ${shortId}\nDelete: /delete ${shortId}`,
+      text: `✅ Saved ${shortId}\n\nDelete: /delete ${shortId}`,
     }
   );
 
@@ -292,7 +292,9 @@ export default async function handler(req, res) {
           `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
           { chat_id: chatId, text: `❌ Internal error: ${e.message}` }
         );
-      } catch (_) {}
+      } catch {
+        // Ignore notification failure
+      }
     }
     res.status(500).json({ error: e.message });
   }
