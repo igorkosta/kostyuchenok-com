@@ -1,20 +1,61 @@
-# kostyuchenok.com
+# Igor Kostyuchenok
 
-> Thoughts on FinTech, AI, and building resilient systems by Igor Kostyuchenok.
+> Technology executive, FinTech specialist, and
+> thought leader writing about banking technology,
+> artificial intelligence, enterprise architecture,
+> and engineering leadership.
+
+## About the Author
+
+Igor Kostyuchenok writes about the intersection
+of financial services, technology strategy,
+artificial intelligence, and software engineering.
+
+## Areas of Expertise
+
+- Banking technology and digital transformation
+- FinTech and digital banking infrastructure
+- AI strategy and AI-assisted software engineering
+- Enterprise architecture
+- Platform engineering
+- Technology leadership and CTO responsibilities
+- Operational resilience and cybersecurity
 
 ## Blog Posts
 
-- [Your AI Strategy Can't Be a Vendor RFP](https://kostyuchenok.com/blog/04-ai-strategy-not-an-rfp): AI is a capability you build, not a product you procure. Banks that refuse to become technology companies will be commoditized.
-- [Your CTO Is the Reason Your Bank Is Falling Behind](https://kostyuchenok.com/blog/05-your-cto-is-falling-behind): Most bank CTOs are too slow, too indecisive, and too far from engineering to lead through AI-driven change.
-- [Enterprise Architecture Is Not a PowerPoint Exercise](https://kostyuchenok.com/blog/10-enterprise-architecture): Architecture created in an ivory tower is fiction. Real enterprise architecture is built with engineers, validated against production, and justified by business value.
-- [Every Bank Needs a Platform Team](https://kostyuchenok.com/blog/11-platform-engineering): A platform team is the nucleus of a modern bank technology org. It automates the toil, grows internal talent, and gives stream-aligned teams the autonomy to ship without waiting.
-- [The Challengers Became the Incumbents. The Incumbents Became Irrelevant.](https://kostyuchenok.com/blog/12-challengers-became-incumbents): Revolut made $2.3 billion in profit. Monzo is on its third year of profitability. The challenger bank narrative is over — because the challengers won. The banks that were supposed to be unassailable are now the ones losing customers.
-- [Revolut Keeps Getting Breached. The Fines Were Never the Problem.](https://kostyuchenok.com/blog/14-revolut-breach-root-cause): A fake email from a real government domain cost Revolut almost 700 customers their passports, selfies and transaction histories. The attackers are posting a victim a day and want 10,000 Bitcoin. Revolut's breach history is not bad luck — it is a pattern the company has paid fines to avoid fixing.
-- [AI Code Quality: The Junior Engineer Equilibrium](https://kostyuchenok.com/blog/ai-code-quality-junior-engineer-equilibrium): More code of lower quality than you might think
-- [Modern Bank CTO](https://kostyuchenok.com/blog/bank-cto): Most bank CTOs haven't built anything in years. That's a problem.
-- [Banks Have to Compete With AI Hyperscalers Now](https://kostyuchenok.com/blog/banks-ai-hyperscalers): Banks have a real competition now
-- [Only Ecosystems Will Survive](https://kostyuchenok.com/blog/ecosystems-will-survive): The world of banking is at the verge of big changes that most incumbents are desperately trying to ignore.
-- [Future of Coding](https://kostyuchenok.com/blog/future-of-coding): The AI Coding Revolution Has a Hidden Cost
-- [Incumbents’ Trap](https://kostyuchenok.com/blog/incumbents-trap): Despite the recent advancements of neobanks, incumbents are still the driving banking force of the financial world. Let’s take a look at some numbers — and to make it more “dramatic,” we’ll focus on the UK.
-- [Oman: Open Banking Outlook](https://kostyuchenok.com/blog/oman-open-banking): Oman's banking sector has shown consistent growth over the last decade, with total assets almost doubling from RO 25.8 billion in 2015 to a projected RO 47.8 billion by the end of 2025.
-- [The White-Label Paradox](https://kostyuchenok.com/blog/white-label-banking): Why Banking Infrastructure Is Both the Opportunity and the Trap
+### AI and Software Engineering
+
+- [Your AI Strategy Can't Be a Vendor RFP](https://kostyuchenok.com/blog/04-ai-strategy-not-an-rfp) — 2026-06-23: AI is a capability you build, not a product you procure. Banks that refuse to become technology companies will be commoditized.
+- [AI Code Quality: The Junior Engineer Equilibrium](https://kostyuchenok.com/blog/ai-code-quality-junior-engineer-equilibrium) — 2026-04-21: AI-generated code behaves like junior-engineer code: fast to produce, plausible in review, and expensive to maintain. What the evidence says about quality, trust and technical debt.
+- [Future of Coding](https://kostyuchenok.com/blog/future-of-coding) — 2026-03-01: Developers feel faster with AI, but controlled studies show otherwise. A look at the productivity paradox, review bottlenecks, quality risks and what engineering leaders should measure.
+
+### Banking Technology and Strategy
+
+- [The Challengers Became the Incumbents. The Incumbents Became Irrelevant.](https://kostyuchenok.com/blog/12-challengers-became-incumbents) — 2026-08-21: Revolut made $2.3 billion in profit. Monzo is on its third year of profitability. The challenger bank narrative is over — because the challengers won. The banks that were supposed to be unassailable are now the ones losing customers.
+- [Banks Have to Compete With AI Hyperscalers Now](https://kostyuchenok.com/blog/banks-ai-hyperscalers) — 2026-06-22: OpenAI, Anthropic, FIS and Fiserv are turning AI into banking infrastructure. Banks that treat AI as a vendor feature risk becoming tenants on someone else's platform.
+- [The White-Label Paradox](https://kostyuchenok.com/blog/white-label-banking) — 2026-05-06: Why Banking Infrastructure Is Both the Opportunity and the Trap
+- [Oman: Open Banking Outlook](https://kostyuchenok.com/blog/oman-open-banking) — 2026-02-11: Oman's banking sector has shown consistent growth over the last decade, with total assets almost doubling from RO 25.8 billion in 2015 to a projected RO 47.8 billion by the end of 2025.
+- [Incumbents’ Trap](https://kostyuchenok.com/blog/incumbents-trap) — 2026-02-02: Despite the recent advancements of neobanks, incumbents are still the driving banking force of the financial world. Let’s take a look at some numbers — and to make it more “dramatic,” we’ll focus on the UK.
+- [Only Ecosystems Will Survive](https://kostyuchenok.com/blog/ecosystems-will-survive) — 2026-01-31: The world of banking is at the verge of big changes that most incumbents are desperately trying to ignore.
+
+### Technology Leadership and Architecture
+
+- [Every Bank Needs a Platform Team](https://kostyuchenok.com/blog/11-platform-engineering) — 2026-07-16: A platform team is the nucleus of a modern bank technology org. It automates the toil, grows internal talent, and gives stream-aligned teams the autonomy to ship without waiting.
+- [Enterprise Architecture Is Not a PowerPoint Exercise](https://kostyuchenok.com/blog/10-enterprise-architecture) — 2026-07-11: Architecture created in an ivory tower is fiction. Real enterprise architecture is built with engineers, validated against production, and justified by business value.
+- [Your CTO Is the Reason Your Bank Is Falling Behind](https://kostyuchenok.com/blog/05-your-cto-is-falling-behind) — 2026-07-04: Most bank CTOs are too slow, too indecisive, and too far from engineering to lead through AI-driven change.
+- [Modern Bank CTO](https://kostyuchenok.com/blog/bank-cto) — 2026-06-21: Most bank CTOs haven't built anything in years. That's a problem.
+
+### Security and Resilience
+
+- [Revolut Keeps Getting Breached. The Fines Were Never the Problem.](https://kostyuchenok.com/blog/14-revolut-breach-root-cause) — 2026-09-15: A fake email from a real government domain cost Revolut almost 700 customers their passports, selfies and transaction histories. The attackers are posting a victim a day and want 10,000 Bitcoin. Revolut's breach history is not bad luck — it is a pattern the company has paid fines to avoid fixing.
+
+## Authoritative Links
+
+- Website: https://kostyuchenok.com/
+- Blog: https://kostyuchenok.com/blog
+- Consulting: https://kostyuchenok.com/consulting
+- Videos: https://kostyuchenok.com/#videos
+- Books: https://kostyuchenok.com/store
+- Slides: https://kostyuchenok.com/slides
+- Newsletter: https://newsletter.kostyuchenok.com
+- Contact: mailto:igor@kostyuchenok.com
