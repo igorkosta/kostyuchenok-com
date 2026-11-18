@@ -1,6 +1,7 @@
 ---
 title: "The White-Label Paradox"
 date: 2026-05-06
+category: "Banking Technology and Strategy"
 description: Why Banking Infrastructure Is Both the Opportunity and the Trap
 ---
 

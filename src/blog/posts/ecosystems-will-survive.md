@@ -1,6 +1,7 @@
 ---
 title: Only Ecosystems Will Survive
 date: 2026-01-31
+category: "Banking Technology and Strategy"
 description: The world of banking is at the verge of big changes that most incumbents are desperately trying to ignore.
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Every Bank Needs a Platform Team"
 date: 2026-07-16
+category: "Technology Leadership and Architecture"
 description: "A platform team is the nucleus of a modern bank technology org. It automates the toil, grows internal talent, and gives stream-aligned teams the autonomy to ship without waiting."
 ---
 

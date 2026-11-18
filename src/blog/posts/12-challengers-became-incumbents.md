@@ -1,6 +1,7 @@
 ---
 title: "The Challengers Became the Incumbents. The Incumbents Became Irrelevant."
 date: 2026-08-21
+category: "Banking Technology and Strategy"
 description: "Revolut made $2.3 billion in profit. Monzo is on its third year of profitability. The challenger bank narrative is over — because the challengers won. The banks that were supposed to be unassailable are now the ones losing customers."
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Revolut Keeps Getting Breached. The Fines Were Never the Problem."
 date: 2026-09-15
+category: "Security and Resilience"
 description: "A fake email from a real government domain cost Revolut almost 700 customers their passports, selfies and transaction histories. The attackers are posting a victim a day and want 10,000 Bitcoin. Revolut's breach history is not bad luck — it is a pattern the company has paid fines to avoid fixing."
 ---
 

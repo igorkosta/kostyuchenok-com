@@ -1,7 +1,8 @@
 ---
 title: "AI Code Quality: The Junior Engineer Equilibrium"
 date: 2026-04-21
-description: More code of lower quality than you might think
+category: "AI and Software Engineering"
+description: "AI-generated code behaves like junior-engineer code: fast to produce, plausible in review, and expensive to maintain. What the evidence says about quality, trust and technical debt."
 ---
 
 ## What the Data Actually Shows About AI-Assisted Coding

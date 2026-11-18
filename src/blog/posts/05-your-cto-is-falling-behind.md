@@ -1,6 +1,7 @@
 ---
 title: "Your CTO Is the Reason Your Bank Is Falling Behind"
 date: 2026-07-04
+category: "Technology Leadership and Architecture"
 description: "Most bank CTOs are too slow, too indecisive, and too far from engineering to lead through AI-driven change."
 ---
 

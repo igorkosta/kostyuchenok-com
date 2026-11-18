@@ -1,6 +1,7 @@
 ---
 title: "Modern Bank CTO"
 date: 2026-06-21
+category: "Technology Leadership and Architecture"
 description: Most bank CTOs haven't built anything in years. That's a problem.
 ---
 

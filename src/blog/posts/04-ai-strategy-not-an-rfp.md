@@ -1,6 +1,7 @@
 ---
 title: "Your AI Strategy Can't Be a Vendor RFP"
 date: 2026-06-23
+category: "AI and Software Engineering"
 description: "AI is a capability you build, not a product you procure. Banks that refuse to become technology companies will be commoditized."
 ---
 

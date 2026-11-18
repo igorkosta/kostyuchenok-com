@@ -1,7 +1,8 @@
 ---
 title: Future of Coding
 date: 2026-03-01
-description: The AI Coding Revolution Has a Hidden Cost
+category: "AI and Software Engineering"
+description: "Developers feel faster with AI, but controlled studies show otherwise. A look at the productivity paradox, review bottlenecks, quality risks and what engineering leaders should measure."
 ---
 
 ## Executive Summary

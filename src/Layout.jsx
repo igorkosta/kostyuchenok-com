@@ -133,11 +133,6 @@ export default function Layout({ children }) {
               <p>Germany</p>
               <p className="muted">CET &middot; works across time zones</p>
             </div>
-            <div className="footer-col">
-              <h4>Colophon</h4>
-              <p className="muted">Instrument Serif &amp; IBM Plex</p>
-              <p className="muted">Built with React</p>
-            </div>
           </div>
 
           <div className="footer-bottom">

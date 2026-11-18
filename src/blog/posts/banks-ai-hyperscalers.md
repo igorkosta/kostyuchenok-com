@@ -1,7 +1,8 @@
 ---
 title: "Banks Have to Compete With AI Hyperscalers Now"
 date: 2026-06-22
-description: Banks have a real competition now
+category: "Banking Technology and Strategy"
+description: "OpenAI, Anthropic, FIS and Fiserv are turning AI into banking infrastructure. Banks that treat AI as a vendor feature risk becoming tenants on someone else's platform."
 ---
 
 Three years ago, the conversation about AI in banking was simple: can we use this for customer support chatbots? Two years ago, it shifted to: can we use this for internal productivity? Last year, it became: can we build our own models or fine-tune existing ones?
