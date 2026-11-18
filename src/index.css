@@ -2312,6 +2312,145 @@ figure {
   overflow: hidden;
 }
 
+.req {
+  color: var(--signal);
+  margin-left: 2px;
+}
+
+.form-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 340px;
+  animation: rise 0.5s var(--ease) both;
+}
+
+.form-success:focus {
+  outline: none;
+}
+
+.form-success .label {
+  color: var(--signal);
+}
+
+.form-success h3 {
+  margin-top: 14px;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 2.8vw, 2.35rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.form-success p:last-child {
+  margin-top: 10px;
+  max-width: 36ch;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.mail-scene {
+  width: 160px;
+  height: 112px;
+}
+
+.mail-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mail-post {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.mail-box {
+  fill: var(--paper-2);
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+
+.mail-slot {
+  fill: var(--ink);
+}
+
+.mail-door {
+  fill: none;
+  stroke: var(--rule-strong);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.mail-paper {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.mail-letter-stamp {
+  fill: var(--signal);
+}
+
+.mail-letter-line {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.mail-letter {
+  animation: mail-post 1.35s cubic-bezier(0.6, 0.05, 0.7, 0.5) 0.15s both;
+  will-change: transform, opacity;
+}
+
+.mail-flag {
+  transform-box: view-box;
+  transform-origin: 118px 58px;
+  animation: mail-flag 0.45s var(--ease) 1.35s both;
+}
+
+.mail-flag-pole {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.mail-flag-cloth {
+  fill: var(--signal);
+}
+
+@keyframes mail-post {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(-3deg);
+  }
+  20% {
+    transform: translateY(4px) rotate(-2deg);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(44px) rotate(2deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(58px) rotate(2deg);
+  }
+}
+
+@keyframes mail-flag {
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
 /* ---------- Motion ---------- */
 
 @keyframes rise {

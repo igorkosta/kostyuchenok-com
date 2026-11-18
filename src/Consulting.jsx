@@ -144,6 +144,7 @@ const FAQ = [
 
 export default function Consulting() {
   const startedAt = useRef(Date.now());
+  const successRef = useRef(null);
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState({ type: "idle", message: "" });
 
@@ -151,16 +152,40 @@ export default function Consulting() {
     document.title = "Work with me — Igor Kostyuchenok";
   }, []);
 
+  useEffect(() => {
+    if (status.type === "sent") successRef.current?.focus();
+  }, [status.type]);
+
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
+    const raw = Object.fromEntries(new FormData(form));
+
+    const data = {
+      ...raw,
+      name: String(raw.name || "").trim(),
+      email: String(raw.email || "").trim(),
+      company: String(raw.company || "").trim(),
+      role: String(raw.role || "").trim(),
+      decision: String(raw.decision || "").trim(),
+    };
+
+    const missing = !data.name ? "name" : !data.email ? "email" : !data.decision ? "decision" : null;
+
+    if (missing) {
+      setStatus({
+        type: "error",
+        message: "Name, email and message are required.",
+      });
+      form.reportValidity();
+      form.elements[missing]?.focus();
+      return;
+    }
 
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-
-    const data = Object.fromEntries(new FormData(form));
 
     if (data.website) return;
 
@@ -176,28 +201,18 @@ export default function Consulting() {
     setStatus({ type: "sending", message: "Sending your enquiry…" });
 
     try {
-      const method = await sendEnquiry(data);
-
-      if (method === "email") {
-        form.reset();
-        setStatus({
-          type: "sent",
-          message:
-            "Thank you. Your enquiry is on its way — I read every note myself and reply within two working days.",
-        });
-      } else {
-        setStatus({
-          type: "mailto",
-          message:
-            "Your email app should open with the details. If it doesn’t, email igor@kostyuchenok.com directly.",
-        });
-      }
+      await sendEnquiry(data);
+      form.reset();
+      startedAt.current = Date.now();
+      setStatus({ type: "sent", message: "" });
     } catch (error) {
       console.error(error);
       setStatus({
         type: "error",
         message:
-          "Something went wrong. Please email igor@kostyuchenok.com directly and I will pick it up from there.",
+          error?.message === "Contact form is not configured."
+            ? "The form is not available right now. Please email igor@kostyuchenok.com directly."
+            : "Something went wrong. Please email igor@kostyuchenok.com directly and I will pick it up from there.",
       });
     } finally {
       setSending(false);
@@ -438,78 +453,120 @@ export default function Consulting() {
             </a>
           </div>
 
-          <form className="form" onSubmit={handleSubmit} noValidate>
-            <input type="hidden" name="startedAt" value={startedAt.current} />
-            <div className="hp" aria-hidden="true">
-              <label htmlFor="website">Website</label>
-              <input id="website" name="website" type="text" tabIndex="-1" autoComplete="off" />
-            </div>
-
-            <div className="field">
-              <label htmlFor="name">Name</label>
-              <input id="name" name="name" type="text" autoComplete="name" required />
-            </div>
-            <div className="field">
-              <label htmlFor="email">Work email</label>
-              <input id="email" name="email" type="email" autoComplete="email" required />
-            </div>
-            <div className="field">
-              <label htmlFor="company">Company</label>
-              <input id="company" name="company" type="text" autoComplete="organization" />
-            </div>
-            <div className="field">
-              <label htmlFor="role">Role</label>
-              <input id="role" name="role" type="text" autoComplete="organization-title" />
-            </div>
-            <div className="field full">
-              <label htmlFor="decision">What are you deciding?</label>
-              <textarea id="decision" name="decision" required></textarea>
-            </div>
-            <div className="field">
-              <label htmlFor="timeline">Timeline</label>
-              <select id="timeline" name="timeline" defaultValue="">
-                <option value="">Select</option>
-                <option>Next 30 days</option>
-                <option>This quarter</option>
-                <option>Next quarter</option>
-                <option>Exploring</option>
-              </select>
-            </div>
-            <div className="field">
-              <label htmlFor="budget">Budget (optional)</label>
-              <select id="budget" name="budget" defaultValue="">
-                <option value="">Prefer not to say</option>
-                <option>Under €10k</option>
-                <option>€10–25k</option>
-                <option>€25–50k</option>
-                <option>€50k+</option>
-              </select>
-            </div>
-
-            <div className="form-actions">
-              <button className="btn btn-primary" type="submit" disabled={sending}>
-                {sending ? "Sending…" : "Send enquiry"}{" "}
-                <span aria-hidden="true">&#8594;</span>
-              </button>
-              <p className="form-note">
-                No newsletter. No CRM sequence. Your note goes to me.
-              </p>
-            </div>
-
+          {status.type === "sent" ? (
             <div
-              className={status.type === "idle" ? "form-status" : "form-status show"}
+              className="form-success"
+              ref={successRef}
+              tabIndex={-1}
               role="status"
               aria-live="polite"
             >
-              {status.type === "sent" || status.type === "mailto" ? (
-                <>
-                  <b>Thank you.</b> {status.message}
-                </>
-              ) : (
-                status.message
-              )}
+              <div className="mail-scene" aria-hidden="true">
+                <svg className="mail-svg" viewBox="0 0 160 112">
+                  <defs>
+                    <clipPath id="mail-slot-clip">
+                      <rect x="0" y="0" width="160" height="60" />
+                    </clipPath>
+                  </defs>
+                  <path className="mail-post" d="M76 88v16M66 104h28" />
+                  <path
+                    className="mail-box"
+                    d="M44 88V49c0-13.3 10.7-24 24-24h24c13.3 0 24 10.7 24 24v39H44Z"
+                  />
+                  <g clipPath="url(#mail-slot-clip)">
+                    <g className="mail-letter">
+                      <rect className="mail-paper" x="68" y="2" width="30" height="24" rx="1" />
+                      <rect className="mail-letter-stamp" x="91" y="5" width="5" height="4" />
+                      <path
+                        className="mail-letter-line"
+                        d="M72 9h12M72 13h18M72 17h14"
+                      />
+                    </g>
+                  </g>
+                  <rect className="mail-slot" x="56" y="58" width="48" height="5" rx="2.5" />
+                  <path className="mail-door" d="M56 72h48" />
+                  <g className="mail-flag">
+                    <path className="mail-flag-pole" d="M118 58V26" />
+                    <path className="mail-flag-cloth" d="M118 26h16v11h-16Z" />
+                  </g>
+                </svg>
+              </div>
+              <p className="label">Sent</p>
+              <h3>Thank you. Your note is on its way.</h3>
+              <p>I read every note myself and reply within two working days.</p>
             </div>
-          </form>
+          ) : (
+            <form className="form" onSubmit={handleSubmit} noValidate>
+              <div className="hp" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input id="website" name="website" type="text" tabIndex="-1" autoComplete="off" />
+              </div>
+
+              <div className="field">
+                <label htmlFor="name">
+                  Name <span className="req" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="email">
+                  Work email <span className="req" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="company">Company</label>
+                <input id="company" name="company" type="text" autoComplete="organization" />
+              </div>
+              <div className="field">
+                <label htmlFor="role">Role</label>
+                <input id="role" name="role" type="text" autoComplete="organization-title" />
+              </div>
+              <div className="field full">
+                <label htmlFor="decision">
+                  What are you deciding? <span className="req" aria-hidden="true">*</span>
+                </label>
+                <textarea
+                  id="decision"
+                  name="decision"
+                  required
+                  aria-required="true"
+                ></textarea>
+              </div>
+
+              <div className="form-actions">
+                <button className="btn btn-primary" type="submit" disabled={sending}>
+                  {sending ? "Sending…" : "Send enquiry"}{" "}
+                  <span aria-hidden="true">&#8594;</span>
+                </button>
+                <p className="form-note">
+                  No newsletter. No CRM sequence. Your note goes to me.
+                </p>
+              </div>
+
+              <div
+                className={status.type === "idle" ? "form-status" : "form-status show"}
+                role="status"
+                aria-live="polite"
+              >
+                {status.message}
+              </div>
+            </form>
+          )}
         </div>
       </section>
     </Layout>
