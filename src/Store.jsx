@@ -1,41 +1,52 @@
+import { useEffect } from "react";
 import { books } from "./data/books";
 import Layout from "./Layout";
 
 export default function Store() {
+  useEffect(() => {
+    document.title = "Books — Igor Kostyuchenok";
+  }, []);
+
   return (
     <Layout>
-      <div className="store-container">
-        <div className="store-header">
-          <h1>Bookstore</h1>
-        </div>
+      <div className="container page">
+        <header className="page-head">
+          <p className="label">Books</p>
+          <h1>Two short books about building.</h1>
+          <p className="page-lede">
+            Plain-language introductions to the worlds of fintech and startups, written for
+            people who would rather understand the terrain before they commit.
+          </p>
+        </header>
 
-        <div className="book-list">
+        <div className="store-list">
           {books.map((book) => (
-            <div key={book.id} className="book-item">
-              <div className="book-cover-small">
-                <img src={book.cover} alt={book.title} />
-              </div>
-              <div className="book-details">
-                <h3>{book.title}</h3>
-                <span className="language-pill">{book.language}</span>
-                <p className="book-desc">{book.description}</p>
-                <div className="book-price">${book.price} USD</div>
-                <div className="book-actions">
+            <article className="store-item" key={book.id}>
+              <img
+                className="store-cover"
+                src={book.cover}
+                alt={`Cover of ${book.title}`}
+                loading="lazy"
+              />
+              <div>
+                <h2 className="store-title">{book.title}</h2>
+                <p className="store-meta">
+                  {book.language} &middot; {book.price} USD
+                </p>
+                <p className="store-desc">{book.description}</p>
+                <div className="store-actions">
                   <a
+                    className="btn btn-primary"
                     href={book.amazonLink}
-                    className="buy-button"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Buy on Amazon
+                    Buy on Amazon <span aria-hidden="true">&#8599;</span>
                   </a>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
-        </div>
-
-        <div className="store-footer">
         </div>
       </div>
     </Layout>

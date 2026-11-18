@@ -143,13 +143,6 @@ export default function Slides() {
     }
   }, []);
 
-  const openSpeakerView = () => {
-    setShowSpeaker(!showSpeaker);
-  };
-
-  const goNext = () => deckInstance.current?.right();
-  const goPrev = () => deckInstance.current?.left();
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 's' || e.key === 'S') {

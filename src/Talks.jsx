@@ -1,11 +1,8 @@
-import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import bakedVideos from "./data/videos.json";
 
 const PLAYLIST_FEED =
   "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZ-bmETADhY9f_Scgaeu3aZT7bE6iCmSf";
-const PLAYLIST_EMBED =
-  "https://www.youtube.com/embed/videoseries?list=PLZ-bmETADhY9f_Scgaeu3aZT7bE6iCmSf";
 
 function parsePlaylist(xml) {
   try {
@@ -28,88 +25,94 @@ function parsePlaylist(xml) {
   }
 }
 
+function splitTalk(title) {
+  const parts = title.split("|").map((part) => part.trim());
+  const name = parts[0];
+  const venue = parts.slice(1).join(" · ");
+  const year = title.match(/20\d{2}/)?.[0] || "";
+  return { name, venue: venue || "Talk", year };
+}
+
 export default function Talks() {
   const [videos, setVideos] = useState(bakedVideos);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [loadFailed, setLoadFailed] = useState(bakedVideos.length === 0);
-  const trackRef = useRef(null);
 
   useEffect(() => {
+    let cancelled = false;
+
     fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(PLAYLIST_FEED)}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("fetch failed");
-        return res.text();
+      .then((response) => {
+        if (!response.ok) throw new Error("fetch failed");
+        return response.text();
       })
       .then(parsePlaylist)
-      .then((v) => {
-        if (v.length) setVideos(v);
-        else setLoadFailed(true);
+      .then((list) => {
+        if (!cancelled && list.length) setVideos(list);
       })
-      .catch(() => setLoadFailed(bakedVideos.length === 0));
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  useEffect(() => {
-    if (!videos.length) return;
-    const track = trackRef.current;
-    const active = track?.querySelector(".carousel-card.active");
-    if (!track || !active) return;
-    const left = active.offsetLeft - track.clientWidth / 2 + active.clientWidth / 2;
-    track.scrollTo({ left, behavior: "smooth" });
-  }, [activeIndex, videos.length]);
+  if (!videos.length) {
+    return (
+      <a
+        className="text-link"
+        href="https://www.youtube.com/playlist?list=PLZ-bmETADhY9f_Scgaeu3aZT7bE6iCmSf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Watch the talks on YouTube &#8599;
+      </a>
+    );
+  }
 
-  const goPrev = () => setActiveIndex((i) => (i - 1 + videos.length) % videos.length);
-  const goNext = () => setActiveIndex((i) => (i + 1) % videos.length);
+  const [featured, ...others] = videos;
+  const featuredMeta = splitTalk(featured.title);
 
   return (
-    <section id="talks">
-      <h2>Talks</h2>
-      <p className="section-subtitle">
-        Talks and interviews — new videos appear here automatically.
-      </p>
-      {loadFailed || videos.length === 0 ? (
-        <div className="videoseries-embed">
-          <iframe
-            src={PLAYLIST_EMBED}
-            title="Talks and Interviews"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
+    <div className="talks-grid">
+      <a
+        className="featured-talk"
+        href={`https://youtu.be/${featured.id}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div className="thumb">
+          <img src={featured.thumb} alt="" loading="lazy" />
+          <span className="play" aria-hidden="true">
+            <span className="play-ring">
+              <span className="play-tri"></span>
+            </span>
+          </span>
         </div>
-      ) : (
-        <div className="talks-carousel">
-          <div className="talks-player">
-            <iframe
-              key={videos[activeIndex].id}
-              src={`https://www.youtube-nocookie.com/embed/${videos[activeIndex].id}?playsinline=1`}
-              title={videos[activeIndex].title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
-          </div>
-          <div className="talks-carousel-bar">
-            <button className="carousel-arrow" onClick={goPrev} aria-label="Previous video">
-              <ChevronLeft size={28} />
-            </button>
-            <div className="carousel-track" ref={trackRef}>
-              {videos.map((v, i) => (
-                <button
-                  key={v.id}
-                  className={`carousel-card ${i === activeIndex ? "active" : ""}`}
-                  onClick={() => setActiveIndex(i)}
-                >
-                  <img src={v.thumb} alt={v.title} loading="lazy" />
-                  <span className="carousel-card-title">{v.title}</span>
-                </button>
-              ))}
-            </div>
-            <button className="carousel-arrow" onClick={goNext} aria-label="Next video">
-              <ChevronRight size={28} />
-            </button>
-          </div>
+        <div className="talk-caption">
+          <h3>{featuredMeta.name}</h3>
+          <span>{featuredMeta.venue}</span>
         </div>
-      )}
-    </section>
+      </a>
+
+      <div className="talk-rows">
+        {others.slice(0, 4).map((video) => {
+          const meta = splitTalk(video.title);
+          return (
+            <a
+              key={video.id}
+              className="talk-row"
+              href={`https://youtu.be/${video.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="talk-year">{meta.year || "Talk"}</span>
+              <span>
+                <span className="talk-title">{meta.name}</span>
+                <span className="talk-venue">{meta.venue}</span>
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
   );
 }

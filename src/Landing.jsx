@@ -1,100 +1,309 @@
-import React, { useState, useEffect } from "react";
-import profilePic from "./assets/me.jpg";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Layout from "./Layout";
 import Talks from "./Talks";
+import { posts } from "./blog";
+import { getReadingTime, formatMonthYear } from "./blog/utils";
+import { books } from "./data/books";
+
+const CONSULTING_ROWS = [
+  {
+    num: "01",
+    name: "Technology advisory",
+    description: "For boards and CTOs who need a second opinion that has shipped.",
+    format: "Monthly retainer",
+  },
+  {
+    num: "02",
+    name: "Architecture sprint",
+    description: "A decision memo and target architecture in two to six weeks.",
+    format: "Fixed scope",
+  },
+  {
+    num: "03",
+    name: "Executive mentoring",
+    description: "One-to-one for new CTOs and founders, 90 minutes a month.",
+    format: "1:1",
+  },
+];
 
 export default function Landing() {
-  const [year, setYear] = useState();
-  const currentYear = () =>  setYear(new Date().getFullYear())
-
   useEffect(() => {
-      currentYear();
-  }, [])
+    document.title = "Igor Kostyuchenok — Fintech operator, author, advisor";
+  }, []);
 
-  const services = [
-    {
-      title: "CTO / C-Level Advisory",
-      description:
-        "Embedded guidance for boards and founders on architecture, technology strategy, and engineering leadership."
-    },
-    {
-      title: "AI Strategy, Not an RFP",
-      description:
-        "Cut through vendor decks and analyst reports to decide what AI your business actually needs — and what it doesn't."
-    },
-    {
-      title: "Core & Platform Modernization",
-      description:
-        "Move off brittle, patched-together legacy systems toward cloud-native, real-time infrastructure."
-    },
-    {
-      title: "Mentoring for Leaders",
-      description:
-        "One-on-one executive mentoring for founders and C-level leaders navigating the next wave of banking technology."
-    }
-  ];
+  const latest = posts[0];
+  const writing = posts.slice(0, 5);
+  const latestTitle = latest ? latest.title.split(".")[0] : "New essay";
 
   return (
     <Layout>
-      <section id="consulting" className="consulting-hero">
-        <div className="consulting-inner">
-          <div className="consulting-hero-layout">
-            <div className="consulting-hero-heading">
-              <span className="eyebrow">Consulting</span>
-              <h1 className="consulting-title">
-                Driving Digital Transformation & Resilient Infrastructure in Regulated Environments.
-              </h1>
+      <section className="hero container">
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <p className="kicker">Co-founder, Mbanq &middot; Fintech operator &middot; Author</p>
+            <h1 className="hero-title">I build the infrastructure banks compete on.</h1>
+            <p className="hero-follow">Then I write about the ones that can&rsquo;t.</p>
+            <p className="hero-lede">
+              Fifteen years shipping banking products that survive regulators, audits and
+              scale &mdash; first as a builder, now as an advisor to the teams trying to do
+              the same.
+            </p>
+            <div className="hero-actions">
+              <Link className="btn btn-primary" to="/consulting">
+                Work with me <span aria-hidden="true">&#8594;</span>
+              </Link>
+              <Link
+                className="btn btn-ghost"
+                to={latest ? `/blog/${latest.slug}` : "/blog"}
+              >
+                Read the latest essay
+              </Link>
             </div>
-            <p className="consulting-intro">
-              I help banks and FinTechs build technology that survives the next five years —
-              AI strategy, core modernization, and real-time infrastructure.{" "}
-              <strong>15+ years of shipping FinTech products and services.</strong>
+          </div>
+
+          <figure className="hero-figure">
+            <div className="frame">
+              <img
+                src="/img/turtleneck-me.png"
+                alt="Portrait of Igor Kostyuchenok"
+                width="690"
+                height="714"
+              />
+              <span className="fig-tag">Fig. 01</span>
+            </div>
+            <figcaption className="figcaption">
+              <span>Igor Kostyuchenok, co-founder of Mbanq</span>
+              <span>Germany &middot; 2026</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div className="status" aria-label="Current status">
+          <div className="status-grid">
+            <div className="status-item">
+              <p className="status-k">Now</p>
+              <p className="status-v">
+                Co-founder at <b>Mbanq</b>
+              </p>
+            </div>
+            <div className="status-item">
+              <p className="status-k">Writing</p>
+              <p className="status-v">{latestTitle}</p>
+            </div>
+            <div className="status-item">
+              <p className="status-k">Next</p>
+              <p className="status-v">UNCHAIN Festival &middot; Main Stage</p>
+            </div>
+            <div className="status-item">
+              <p className="status-k">Advisory</p>
+              <p className="status-v">
+                <b>1 slot open</b> &middot; Q1 2027
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section container" id="now">
+        <div className="section-head">
+          <p className="label">
+            <b>01</b> Now
+          </p>
+          <a className="text-link" href="mailto:igor@kostyuchenok.com">
+            Get in touch &#8599;
+          </a>
+        </div>
+
+        <div className="now-grid">
+          <div className="now-lead">
+            <h2 className="display">
+              Banks don&rsquo;t have technology problems. They have decision problems.
+            </h2>
+          </div>
+
+          <div className="now-body">
+            <p>
+              Most banks I walk into don&rsquo;t lack engineers, vendors or budget. They
+              lack a clear answer to what they are actually building, who owns it, and what
+              they will stop doing. The technology follows.
+            </p>
+            <p>
+              At Mbanq I spent fifteen years building the rails that fintechs and banks run
+              on. Now I advise the teams on the other side of that decision &mdash; and write
+              about why so many get it wrong.
             </p>
           </div>
-          <div className="consulting-cta">
-            <a
-              href="https://calendly.com/igor-kostyuchenok"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="book-button"
-            >
-              Book a free intro call
-            </a>
-            <span>or email</span>
-            <a href="mailto:igor@kostyuchenok.com" className="consulting-email-link">
-              igor@kostyuchenok.com
-            </a>
-          </div>
-          <div className="services-grid">
-            {services.map((s) => (
-              <div key={s.title} className="service-card">
-                <h3>{s.title}</h3>
-                <p>{s.description}</p>
+
+          <aside className="facts" aria-label="At a glance">
+            <div className="fact">
+              <span className="fact-n">15+</span>
+              <span className="fact-l">years shipping fintech products</span>
+            </div>
+            <div className="fact">
+              <span className="fact-n">2</span>
+              <span className="fact-l">books on fintech and startups</span>
+            </div>
+            <div className="fact">
+              <span className="fact-n">1</span>
+              <span className="fact-l">BaaS platform, built from the inside</span>
+            </div>
+          </aside>
+        </div>
+
+        <div className="featured">
+          <span className="featured-k">Worked with</span>
+          <a href="https://www.mbanq.com" target="_blank" rel="noopener noreferrer">
+            Mbanq
+          </a>
+          <a href="https://salmon.group/" target="_blank" rel="noopener noreferrer">
+            Salmon Group
+          </a>
+          <a href="https://hawk.ai/" target="_blank" rel="noopener noreferrer">
+            Hawk AI
+          </a>
+        </div>
+        <div className="featured featured-sub">
+          <span className="featured-k">Spoke at</span>
+          <span className="featured-item">UNCHAIN Festival</span>
+          <span className="featured-item">Baltic Fintech Days</span>
+          <span className="featured-item">Rocket Conf</span>
+          <span className="featured-item">Tech&rsquo;o&rsquo;Space</span>
+          <a
+            href="https://ki-in-produkt-treffen.andersenlab.de/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Andersen Labs
+          </a>
+        </div>
+      </section>
+
+      <section className="section container" id="writing">
+        <div className="section-head">
+          <p className="label">
+            <b>02</b> Selected writing
+          </p>
+          <Link className="text-link" to="/blog">
+            All writing &#8599;
+          </Link>
+        </div>
+
+        <div className="writing-list">
+          {writing.map((post, index) => (
+            <Link key={post.slug} className="writing-row" to={`/blog/${post.slug}`}>
+              <span className="w-index">{String(index + 1).padStart(2, "0")}</span>
+              <span>
+                <span className="w-title">{post.title}</span>
+                {post.description ? <span className="w-dek">{post.description}</span> : null}
+              </span>
+              <span className="w-meta">
+                {formatMonthYear(post.date)}
+                <br />
+                Essay &middot; {getReadingTime(post.content)}
+              </span>
+              <span className="w-arrow" aria-hidden="true">
+                &#8599;
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="section container" id="talks">
+        <div className="section-head">
+          <p className="label">
+            <b>03</b> Talks
+          </p>
+          <a
+            className="text-link"
+            href="https://www.youtube.com/playlist?list=PLZ-bmETADhY9f_Scgaeu3aZT7bE6iCmSf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Archive &#8599;
+          </a>
+        </div>
+
+        <Talks />
+      </section>
+
+      <section className="section container" id="books">
+        <div className="section-head">
+          <p className="label">
+            <b>04</b> Books
+          </p>
+          <Link className="text-link" to="/store">
+            Bookstore &#8599;
+          </Link>
+        </div>
+
+        <div className="books-grid">
+          {books.map((book, index) => (
+            <div className="book" key={book.id}>
+              <img
+                className="book-cover"
+                src={book.cover}
+                alt={`Cover of ${book.title}`}
+                loading="lazy"
+              />
+              <div>
+                <p className="book-num">Book {String(index + 1).padStart(2, "0")}</p>
+                <h3>{book.title}</h3>
+                <p>{book.description}</p>
+                <a
+                  className="text-link"
+                  href={book.amazonLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Buy on Amazon &#8599;
+                </a>
               </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="consult" id="consulting">
+        <div className="container">
+          <p className="label">
+            <b>05</b> Consulting
+          </p>
+
+          <div className="consult-head">
+            <h2>Bring me in when the decision is expensive.</h2>
+            <p className="consult-lede">
+              Architecture, AI strategy and core modernisation for banks and fintechs.
+              Operator judgment, not a slide deck.
+            </p>
+          </div>
+
+          <div className="consult-list">
+            {CONSULTING_ROWS.map((row) => (
+              <Link
+                key={row.num}
+                className="consult-row"
+                to="/consulting#engagements"
+              >
+                <span className="c-num">{row.num}</span>
+                <span className="c-name">{row.name}</span>
+                <span className="c-desc">{row.description}</span>
+                <span className="c-format">{row.format}</span>
+                <span className="c-arrow" aria-hidden="true">
+                  &#8599;
+                </span>
+              </Link>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section id="about-me">
-        <div className="about-me-container">
-          <div className="about-me-image">
-            <img src={profilePic} alt="Igor" />
-          </div>
-          <div className="about-me-bio">
-            <p>Serial entrepreneur, speaker, and C-Level mentor.</p>
-            <p>{year - 2010}+ years of experience in the FinTech industry creating innovative products and services for Banks and FinTechs.</p>
+          <div className="consult-cta">
+            <Link className="btn btn-invert" to="/consulting">
+              Work with me <span aria-hidden="true">&#8594;</span>
+            </Link>
+            <p className="consult-note">One advisory slot open &middot; Q1 2027</p>
           </div>
         </div>
-      </section>
-
-      <Talks />
-
-      <section id="contact-me">
-        <h1 className="large-text">Contact Me</h1>
-        <h1 className="large-text mail">
-          <a href="mailto:igor@kostyuchenok.com">igor@kostyuchenok.com</a>
-        </h1>
       </section>
     </Layout>
   );

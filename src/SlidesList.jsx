@@ -1,41 +1,39 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const slides = [
   {
-    slug: 'ai-state-2026',
-    title: 'Building products with AI',
-    description: 'A balanced look at AI in 2026 - beyond the hype and fear.',
-    date: '2026'
-  }
+    slug: "ai-state-2026",
+    title: "Building products with AI",
+    description: "A balanced look at AI in 2026 — beyond the hype and fear.",
+    date: "2026",
+  },
 ];
 
 export default function SlidesList() {
+  useEffect(() => {
+    document.title = "Keynotes — Igor Kostyuchenok";
+  }, []);
+
   return (
-    <div style={{ padding: '40px 20px', maxWidth: 1200, margin: '0 auto' }}>
-      <h1 style={{ fontSize: '2.5rem', marginBottom: 30 }}>Keynotes</h1>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        gap: 24
-      }}>
-        {slides.map(slide => (
-          <Link
-            key={slide.slug}
-            to={`/slides/${slide.slug}`}
-            style={{
-              display: 'block',
-              background: '#1a1a1a',
-              borderRadius: 12,
-              padding: 24,
-              textDecoration: 'none',
-              color: '#fff',
-              border: '1px solid #333',
-              transition: 'transform 0.2s, box-shadow 0.2s'
-            }}
-          >
-            <h2 style={{ fontSize: '1.4rem', marginBottom: 12 }}>{slide.title}</h2>
-            <p style={{ color: '#888', marginBottom: 12 }}>{slide.description}</p>
-            <span style={{ color: '#666', fontSize: '0.9rem' }}>{slide.date}</span>
+    <div className="container page">
+      <header className="page-head">
+        <p className="label">Keynotes</p>
+        <h1>Decks from the stage.</h1>
+        <p className="page-lede">
+          Slides from talks and keynote sessions, published as they are given.
+        </p>
+      </header>
+
+      <div className="keynotes-grid">
+        {slides.map((slide) => (
+          <Link key={slide.slug} to={`/slides/${slide.slug}`} className="keynote-card">
+            <div>
+              <span className="keynote-year">{slide.date}</span>
+              <h2>{slide.title}</h2>
+              <p>{slide.description}</p>
+            </div>
+            <span className="keynote-open">Open deck &#8599;</span>
           </Link>
         ))}
       </div>

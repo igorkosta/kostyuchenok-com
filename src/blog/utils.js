@@ -23,32 +23,11 @@ export const formatDate = (date) => {
   return date.toISOString().slice(0, 10);
 };
 
-export const formatShortDate = (date) => {
-  const d = new Date(date);
-  const now = new Date();
-  const diff = now - d;
-  const minutes = Math.floor(diff / 60000);
-  const hours = Math.floor(diff / 3600000);
-  const days = Math.floor(diff / 86400000);
-  
-  if (minutes < 60) return `${minutes}m ago`;
-  if (hours < 24) return `${hours}h ago`;
-  if (days < 7) return `${days}d ago`;
-  
-  return d.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
+export const formatMonthYear = (date) => {
+  return new Date(date).toLocaleDateString("en-GB", {
+    month: "short",
+    year: "numeric",
   });
 };
 
-export const groupByDate = (items) => {
-  const groups = {};
-  items.forEach(item => {
-    const d = new Date(item.date);
-    const key = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(item);
-  });
-  return groups;
-};
+
