@@ -49,6 +49,10 @@ artificial intelligence, and software engineering.
 
 - [Revolut Keeps Getting Breached. The Fines Were Never the Problem.](https://kostyuchenok.com/blog/14-revolut-breach-root-cause) — 2026-09-15: A fake email from a real government domain cost Revolut almost 700 customers their passports, selfies and transaction histories. The attackers are posting a victim a day and want 10,000 Bitcoin. Revolut's breach history is not bad luck — it is a pattern the company has paid fines to avoid fixing.
 
+### Other Writing
+
+- [Regulation as Code: When AI Learns to Read the Rulebook](https://kostyuchenok.com/blog/15-regulation-as-code) — 2026-09-23: A bank told Kyndryl that 60% of its total cost was spent on compliance—and doing it better than the competition doesn't confer a differential advantage. The answer is not more compliance officers. It is turning the regulation itself into software. AI is already doing it.
+
 ## Authoritative Links
 
 - Website: https://kostyuchenok.com/
